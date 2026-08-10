@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #F3F0E8;
+  --color-ivory-soft: #FAF9F6;
+  --color-ivory-muted: #E8E4DA;
+  
+  --color-charcoal: #151515;
+  --color-charcoal-light: #242424;
+  --color-charcoal-muted: #3E3E3E;
+  
+  --color-stone: #B8B0A2;
+  --color-stone-light: #D4CECE;
+  --color-stone-dark: #7A7368;
+  
+  --color-bronze: #9A8060;
+  --color-bronze-light: #B89D7A;
+  --color-bronze-dark: #786246;
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-sans: "Manrope", sans-serif;
+
+  --letter-spacing-architectural: 0.2em;
+  --letter-spacing-widest-headline: 0.08em;
+}
+
+:root {
+  --ease-cinematic: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-architectural: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-charcoal);
+  color: var(--color-ivory);
+  scroll-behavior: smooth;
+}
+
+/* Custom standard scrollbar - elegant but not hidden */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #151515;
+}
+::-webkit-scrollbar-thumb {
+  background: #3E3E3E;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9A8060;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+/* Custom Cursor (Desktop Only) */
+@media (hover: hover) and (pointer: fine) {
+  /* Hide default cursor on elements that have data-cursor */
+  [data-cursor] {
+    cursor: none;
+  }
+  
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+    pointer-events: none;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s var(--ease-cinematic), background-color 0.3s ease;
+    mix-blend-mode: difference;
+    opacity: 0;
+  }
+  
+  .custom-cursor.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    mix-blend-mode: normal;
+  }
+}
+
+/* Subtle Image Hover Interaction */
+@media (hover: hover) {
+  .hover-scale {
+    transition: transform 0.8s var(--ease-cinematic);
+    transform-origin: center;
+  }
+  .group:hover .hover-scale {
+    transform: scale(1.02);
+  }
+}
+
+/* Minimal Form Inputs */
+.form-line-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(184, 176, 162, 0.2);
+  color: var(--color-ivory);
+  padding: 12px 0;
+  width: 100%;
+  font-size: 0.875rem;
+  transition: border-color 0.3s ease;
+}
+.form-line-input:focus {
+  outline: none;
+  border-bottom-color: var(--color-bronze);
+}
+.form-line-input::placeholder {
+  color: rgba(184, 176, 162, 0.4);
+}

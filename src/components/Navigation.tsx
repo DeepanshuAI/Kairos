@@ -1,0 +1,136 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X } from 'lucide-react';
+import { gsap } from 'gsap';
+
+export const Navigation: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const linkRefs = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (mobileMenuOpen && mobileMenuRef.current) {
+      gsap.fromTo(
+        mobileMenuRef.current,
+        { opacity: 0, clipPath: 'inset(0% 0% 100% 0%)' },
+        { opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 0.5, ease: 'power2.inOut' }
+      );
+      gsap.fromTo(
+        linkRefs.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out', delay: 0.2 }
+      );
+    }
+  }, [mobileMenuOpen]);
+
+  const navLinks = [
+    { name: 'Residences', href: '#residences' },
+    { name: 'Architecture', href: '#architecture' },
+    { name: 'Lifestyle', href: '#lifestyle' },
+    { name: 'Location', href: '#location' },
+    { name: 'Enquire', href: '#contact' },
+  ];
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${
+        isScrolled
+          ? 'bg-charcoal border-b border-stone/10'
+          : 'bg-transparent py-4'
+      }`}
+    >
+      <div className={`max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between transition-all duration-500 ${isScrolled ? 'py-5' : 'py-5 md:py-7'}`}>
+        {/* Brand Mark */}
+        <a 
+          href="#" 
+          className="group flex items-center gap-3 tracking-[0.25em] text-xs font-medium uppercase text-ivory hover:text-bronze transition-colors duration-300"
+          data-cursor="TOP"
+        >
+          <span className="font-serif text-xl tracking-[0.15em] text-ivory group-hover:text-bronze transition-colors duration-300">
+            KAIROS
+          </span>
+          <span className="hidden sm:inline-block w-px h-3 bg-stone/30"></span>
+          <span className="hidden sm:inline-block text-[10px] tracking-[0.3em] text-stone">
+            REWARI • HARYANA
+          </span>
+        </a>
+
+        {/* Desktop Links */}
+        <nav className="hidden lg:flex items-center space-x-12 text-[11px] uppercase tracking-[0.25em] font-medium text-stone">
+          {navLinks.map((link) => (
+            <a 
+              key={link.name}
+              href={link.href} 
+              className="relative py-1 text-stone hover:text-ivory transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-ivory after:origin-right after:scale-x-0 hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
+            >
+              {link.name}
+            </a>
+          ))}
+        </nav>
+
+        {/* Integrated Editorial CTA */}
+        <div className="hidden lg:flex items-center">
+          <a
+            href="#contact"
+            className="group relative inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] font-medium text-ivory transition-all duration-300"
+            data-cursor="ENTER"
+          >
+            <span className="relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-px after:bg-bronze after:origin-left group-hover:after:origin-right group-hover:after:scale-x-0 after:transition-transform after:duration-500">Book Private Viewing</span>
+            <span className="w-4 h-px bg-bronze group-hover:w-6 transition-all duration-300" />
+          </a>
+        </div>
+
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="lg:hidden text-ivory p-2 focus:outline-none hover:text-bronze transition-colors relative z-50"
+          aria-label="Toggle navigation menu"
+        >
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
+
+      {/* Mobile Full-Screen Drawer */}
+      {mobileMenuOpen && (
+        <div 
+          ref={mobileMenuRef}
+          className="lg:hidden fixed inset-0 z-40 bg-charcoal flex flex-col items-center justify-center space-y-8"
+        >
+          {navLinks.map((link, index) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              ref={(el) => { linkRefs.current[index] = el; }}
+              className="text-sm uppercase tracking-[0.35em] text-ivory hover:text-bronze transition-colors"
+            >
+              {link.name}
+            </a>
+          ))}
+          <div 
+            ref={(el) => { linkRefs.current[navLinks.length] = el; }}
+            className="pt-8 border-t border-stone/20 mt-4 w-48 text-center"
+          >
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.25em] font-medium text-bronze transition-all duration-300"
+            >
+              <span>Book Viewing</span>
+              <span className="w-4 h-px bg-bronze" />
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+
