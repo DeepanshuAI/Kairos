@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { gsap } from '../animations/utils';
 
 export const CustomCursor: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -12,10 +13,13 @@ export const CustomCursor: React.FC = () => {
     const cursor = cursorRef.current;
     if (!cursor) return;
 
+    // Use GSAP quickTo for highly performant, smooth cursor tracking
+    const xTo = gsap.quickTo(cursor, 'left', { duration: 0.4, ease: 'power3' });
+    const yTo = gsap.quickTo(cursor, 'top', { duration: 0.4, ease: 'power3' });
+
     const moveCursor = (e: MouseEvent) => {
-      // Use requestAnimationFrame for smooth movement or just style directly
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
+      xTo(e.clientX);
+      yTo(e.clientY);
     };
 
     const handleMouseOver = (e: MouseEvent) => {

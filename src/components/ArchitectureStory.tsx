@@ -147,20 +147,26 @@ export const ArchitectureStory: React.FC = () => {
         {/* Layer 3: Floating Architectural Annotations */}
         <div 
           ref={ann1Ref}
-          className="hidden lg:block absolute right-16 top-1/3 z-10 max-w-xs p-6 border-l border-bronze/50 bg-charcoal/80 backdrop-blur-sm space-y-2 text-xs"
+          className="hidden lg:flex absolute right-[15%] top-[30%] z-10 items-center opacity-0 -translate-x-8"
         >
-          <div className="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">FACADE SPECIFICATION</div>
-          <div className="text-ivory font-serif text-lg">Off-Form Concrete & Low-E Triple Glazing</div>
-          <div className="text-stone/70 text-[11px]">Acoustic isolation rating 48dB for absolute silence.</div>
+          <div className="w-16 xl:w-32 h-px bg-bronze/60 origin-right mr-6" data-line />
+          <div className="max-w-xs p-6 border-l border-bronze/50 bg-charcoal/80 backdrop-blur-sm space-y-2 text-xs">
+            <div className="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">FACADE SPECIFICATION</div>
+            <div className="text-ivory font-serif text-lg">Off-Form Concrete & Low-E Triple Glazing</div>
+            <div className="text-stone/70 text-[11px]">Acoustic isolation rating 48dB for absolute silence.</div>
+          </div>
         </div>
 
         <div 
           ref={ann2Ref}
-          className="hidden lg:block absolute right-16 bottom-1/4 z-10 max-w-xs p-6 border-l border-bronze/50 bg-charcoal/80 backdrop-blur-sm space-y-2 text-xs"
+          className="hidden lg:flex absolute right-[15%] bottom-[25%] z-10 items-center opacity-0 -translate-x-8"
         >
-          <div className="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">GROUND FOOTPRINT</div>
-          <div className="text-ivory font-serif text-lg">4.5 Private Acres • Rewari</div>
-          <div className="text-stone/70 text-[11px]">85% dedicated green canopy and private water courtyards.</div>
+          <div className="w-16 xl:w-32 h-px bg-bronze/60 origin-right mr-6" data-line />
+          <div className="max-w-xs p-6 border-l border-bronze/50 bg-charcoal/80 backdrop-blur-sm space-y-2 text-xs">
+            <div className="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">GROUND FOOTPRINT</div>
+            <div className="text-ivory font-serif text-lg">4.5 Private Acres • Rewari</div>
+            <div className="text-stone/70 text-[11px]">85% dedicated green canopy and private water courtyards.</div>
+          </div>
         </div>
 
         {/* Layer 4: Bottom Bar Progress Indicator */}

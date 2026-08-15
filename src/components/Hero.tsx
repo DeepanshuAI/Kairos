@@ -12,7 +12,7 @@ export const Hero: React.FC = () => {
   const scrollIndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = animateHeroEntrance({
+    const anims = animateHeroEntrance({
       container: containerRef.current,
       bgImage: bgRef.current,
       tagline: taglineRef.current,
@@ -23,7 +23,8 @@ export const Hero: React.FC = () => {
     });
 
     return () => {
-      ctx?.kill();
+      anims?.entrance?.kill();
+      anims?.scroll?.kill();
     };
   }, []);
 

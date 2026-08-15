@@ -1,18 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
-import { gsap } from 'gsap';
+import { gsap } from '../animations/utils';
 
 export const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<(HTMLElement | null)[]>([]);
+  const progressBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Reading Progress Bar
+    if (progressBarRef.current) {
+      gsap.to(progressBarRef.current, {
+        scaleX: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.3,
+        }
+      });
+    }
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -21,12 +37,12 @@ export const Navigation: React.FC = () => {
       gsap.fromTo(
         mobileMenuRef.current,
         { opacity: 0, clipPath: 'inset(0% 0% 100% 0%)' },
-        { opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 0.5, ease: 'power2.inOut' }
+        { opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 0.7, ease: 'power3.inOut' }
       );
       gsap.fromTo(
         linkRefs.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out', delay: 0.2 }
+        { opacity: 0, y: 30, rotateX: 15 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out', delay: 0.3 }
       );
     }
   }, [mobileMenuOpen]);
@@ -40,13 +56,19 @@ export const Navigation: React.FC = () => {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${
-        isScrolled
-          ? 'bg-charcoal border-b border-stone/10'
-          : 'bg-transparent py-4'
-      }`}
-    >
+    <>
+      {/* Reading Progress Bar */}
+      <div 
+        ref={progressBarRef} 
+        className="fixed top-0 left-0 h-[2px] bg-bronze z-[60] origin-left scale-x-0 w-full"
+      />
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${
+          isScrolled
+            ? 'bg-charcoal border-b border-stone/10'
+            : 'bg-transparent py-4'
+        }`}
+      >
       <div className={`max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between transition-all duration-500 ${isScrolled ? 'py-5' : 'py-5 md:py-7'}`}>
         {/* Brand Mark */}
         <a 
@@ -131,6 +153,6 @@ export const Navigation: React.FC = () => {
         </div>
       )}
     </header>
+    </>
   );
 };
-

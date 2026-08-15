@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from '../animations/utils';
 
 interface LocationNode {
   id: string;
@@ -66,6 +67,27 @@ const LOCATION_NODES: LocationNode[] = [
 
 export const LocationExperience: React.FC = () => {
   const [activeNode, setActiveNode] = useState<LocationNode>(LOCATION_NODES[0]);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapContentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!mapContainerRef.current || !mapContentRef.current) return;
+
+    gsap.fromTo(
+      mapContentRef.current,
+      { scale: 1.1 },
+      {
+        scale: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: mapContainerRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      }
+    );
+  }, []);
 
   return (
     <section id="location" className="bg-[#131211] text-ivory overflow-hidden">
@@ -128,53 +150,58 @@ export const LocationExperience: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
             {/* Left: Cartographic SVG Map Container */}
-            <div className="lg:col-span-8 relative aspect-[16/10] min-h-[380px] bg-[#181715] border border-stone/20 overflow-hidden p-6 sm:p-10 flex flex-col justify-between">
+            <div ref={mapContainerRef} className="lg:col-span-8 relative aspect-[16/10] min-h-[380px] bg-[#181715] border border-stone/20 overflow-hidden p-6 sm:p-10 flex flex-col justify-between">
               
-              {/* Map Grid Pattern Overlay */}
-              <div 
-                className="absolute inset-0 opacity-15 pointer-events-none"
-                style={{
-                  backgroundImage: `radial-gradient(#9A8060 1px, transparent 1px)`,
-                  backgroundSize: '24px 24px',
-                }}
-              />
+              <div ref={mapContentRef} className="absolute inset-0 w-full h-full">
+                {/* Map Grid Pattern Overlay */}
+                <div 
+                  className="absolute inset-0 opacity-15 pointer-events-none"
+                  style={{
+                    backgroundImage: `radial-gradient(#9A8060 1px, transparent 1px)`,
+                    backgroundSize: '24px 24px',
+                  }}
+                />
 
-              {/* Connecting Vector Lines SVG */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none stroke-bronze/30" strokeWidth="1" strokeDasharray="4 4">
-                <line x1="50%" y1="55%" x2="75%" y2="25%" />
-                <line x1="50%" y1="55%" x2="70%" y2="40%" />
-                <line x1="50%" y1="55%" x2="42%" y2="48%" />
-                <line x1="50%" y1="55%" x2="35%" y2="65%" />
-              </svg>
+                {/* Connecting Vector Lines SVG */}
+                <svg className="absolute inset-0 w-full h-full pointer-events-none stroke-bronze/30" strokeWidth="1" strokeDasharray="4 4">
+                  <line x1="50%" y1="55%" x2="75%" y2="25%" />
+                  <line x1="50%" y1="55%" x2="70%" y2="40%" />
+                  <line x1="50%" y1="55%" x2="42%" y2="48%" />
+                  <line x1="50%" y1="55%" x2="35%" y2="65%" />
+                </svg>
 
-              {/* Location Node Pins */}
-              {LOCATION_NODES.map((node) => {
-                const isActive = activeNode.id === node.id;
-                return (
-                  <button
-                    key={node.id}
-                    onClick={() => setActiveNode(node)}
-                    className="absolute transform -translate-x-1/2 -translate-y-1/2 group focus:outline-none"
-                    style={{ left: `${node.x}%`, top: `${node.y}%` }}
-                  >
-                    <div className="relative flex items-center justify-center">
-                      {isActive && (
-                        <span className="absolute w-8 h-8 rounded-full bg-bronze/30 animate-ping" />
-                      )}
-                      <span 
-                        className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${
-                          isActive 
-                            ? 'bg-ivory ring-4 ring-bronze scale-125' 
-                            : 'bg-bronze hover:bg-ivory hover:scale-110'
-                        }`} 
-                      />
-                      <span className="absolute top-5 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-medium text-stone/90 bg-charcoal/90 px-2 py-1 border border-stone/20 rounded-xs opacity-80 group-hover:opacity-100 transition-opacity">
-                        {node.name}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
+                {/* Location Node Pins */}
+                {LOCATION_NODES.map((node) => {
+                  const isActive = activeNode.id === node.id;
+                  return (
+                    <button
+                      key={node.id}
+                      onClick={() => setActiveNode(node)}
+                      className="absolute transform -translate-x-1/2 -translate-y-1/2 group focus:outline-none"
+                      style={{ left: `${node.x}%`, top: `${node.y}%` }}
+                    >
+                      <div className="relative flex items-center justify-center">
+                        {isActive && (
+                          <>
+                            <span className="absolute w-12 h-12 rounded-full border border-bronze/40 animate-[ping_2s_ease-out_infinite]" />
+                            <span className="absolute w-8 h-8 rounded-full bg-bronze/20 animate-[ping_2s_ease-out_infinite_0.5s]" />
+                          </>
+                        )}
+                        <span 
+                          className={`w-3.5 h-3.5 rounded-full transition-all duration-300 relative z-10 ${
+                            isActive 
+                              ? 'bg-ivory ring-4 ring-bronze scale-125' 
+                              : 'bg-bronze hover:bg-ivory hover:scale-110'
+                          }`} 
+                        />
+                        <span className="absolute top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-medium text-stone/90 bg-charcoal/90 px-3 py-1.5 border border-stone/20 rounded-xs opacity-0 group-hover:opacity-100 transition-opacity z-20">
+                          {node.name}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
 
               {/* Map Footer Disclaimer */}
               <div className="relative z-10 text-[9px] uppercase tracking-[0.25em] text-stone/50">

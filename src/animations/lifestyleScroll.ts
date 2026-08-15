@@ -12,6 +12,21 @@ export const initSignatureLifestyleReveal = (refs: SignatureLifestyleRefs) => {
   if (!container || prefersReducedMotion()) return;
 
   const ctx = gsap.context(() => {
+    // 0. Progressive Background Darkening
+    gsap.fromTo(
+      container,
+      { backgroundColor: '#121110' },
+      {
+        backgroundColor: '#080808',
+        scrollTrigger: {
+          trigger: container,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: true,
+        }
+      }
+    );
+
     // 1. Editorial Header Reveal
     const header = container.querySelector('.lifestyle-header');
     if (header) {

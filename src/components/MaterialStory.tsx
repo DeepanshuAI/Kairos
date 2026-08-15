@@ -1,8 +1,58 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from '../animations/utils';
 
 export const MaterialStory: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const sections = containerRef.current.querySelectorAll('.material-section');
+    
+    sections.forEach((section) => {
+      const img = section.querySelector('.material-img');
+      const textBlock = section.querySelector('.material-text');
+      
+      // Image Parallax
+      if (img) {
+        gsap.fromTo(
+          img,
+          { y: '-10%', scale: 1.1 },
+          {
+            y: '10%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          }
+        );
+      }
+
+      // Text Reveal
+      if (textBlock) {
+        gsap.fromTo(
+          textBlock,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 75%',
+            },
+          }
+        );
+      }
+    });
+  }, []);
+
   return (
-    <section id="details" className="bg-[#141312] text-ivory border-b border-stone/10 overflow-hidden">
+    <section id="details" ref={containerRef} className="bg-[#141312] text-ivory border-b border-stone/10 overflow-hidden">
       
       {/* 0. TRANSITION LABEL */}
       <div className="pt-24 md:pt-36 max-w-4xl mx-auto px-6 text-center">
@@ -15,10 +65,11 @@ export const MaterialStory: React.FC = () => {
           </span>
         </div>
       </div>
+      
       {/* 1. STONE */}
-      <div className="py-24 md:py-36 border-b border-stone/10">
+      <div className="material-section py-24 md:py-36 border-b border-stone/10">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-5 space-y-6">
+          <div className="material-text lg:col-span-5 space-y-6">
             <h3 className="font-serif text-4xl sm:text-6xl font-light leading-tight">
               STONE
             </h3>
@@ -38,7 +89,7 @@ export const MaterialStory: React.FC = () => {
               <img
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop"
                 alt="Honed Travertine Marble Detail"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000 ease-out"
+                className="material-img w-full h-[120%] object-cover object-top"
                 loading="lazy"
               />
             </div>
@@ -47,20 +98,20 @@ export const MaterialStory: React.FC = () => {
       </div>
 
       {/* 2. WOOD */}
-      <div className="py-24 md:py-36 bg-[#111110] border-b border-stone/10">
+      <div className="material-section py-24 md:py-36 bg-[#111110] border-b border-stone/10">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 order-2 lg:order-1">
             <div className="relative aspect-[16/10] bg-charcoal overflow-hidden border border-stone/20">
               <img
                 src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2000&auto=format&fit=crop"
                 alt="Smoked European Oak Wall Paneling"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000 ease-out"
+                className="material-img w-full h-[120%] object-cover object-center"
                 loading="lazy"
               />
             </div>
           </div>
 
-          <div className="lg:col-span-5 order-1 lg:order-2 space-y-6">
+          <div className="material-text lg:col-span-5 order-1 lg:order-2 space-y-6">
             <h3 className="font-serif text-4xl sm:text-6xl font-light leading-tight">
               WOOD
             </h3>
@@ -78,9 +129,9 @@ export const MaterialStory: React.FC = () => {
       </div>
 
       {/* 3. LIGHT */}
-      <div className="py-24 md:py-36 border-b border-stone/10">
+      <div className="material-section py-24 md:py-36 border-b border-stone/10">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 space-y-12">
-          <div className="max-w-2xl space-y-4">
+          <div className="material-text max-w-2xl space-y-4">
             <h3 className="font-serif text-4xl sm:text-6xl font-light leading-tight">
               LIGHT
             </h3>
@@ -93,7 +144,7 @@ export const MaterialStory: React.FC = () => {
             <img
               src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2560&auto=format&fit=crop"
               alt="Natural Light & Shadow Play"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000 ease-out"
+              className="material-img w-full h-[120%] object-cover object-center"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent" />
@@ -105,17 +156,17 @@ export const MaterialStory: React.FC = () => {
       </div>
 
       {/* 4. GLASS & CRAFT (Asymmetric Split) */}
-      <div className="py-24 md:py-36 bg-[#0E0E0D]">
+      <div className="material-section py-24 md:py-36 bg-[#0E0E0D]">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* GLASS Column */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="material-text lg:col-span-6 space-y-6">
             <h3 className="font-serif text-4xl sm:text-5xl font-light">GLASS</h3>
             <div className="relative aspect-[4/3] bg-charcoal overflow-hidden border border-stone/20">
               <img
                 src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1600&auto=format&fit=crop"
                 alt="Motorized Acoustic Glass Wall"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000 ease-out"
+                className="material-img w-full h-[120%] object-cover object-center"
                 loading="lazy"
               />
             </div>
@@ -125,13 +176,13 @@ export const MaterialStory: React.FC = () => {
           </div>
 
           {/* CRAFT Column */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="material-text lg:col-span-6 space-y-6">
             <h3 className="font-serif text-4xl sm:text-5xl font-light">CRAFT</h3>
             <div className="relative aspect-[4/3] bg-charcoal overflow-hidden border border-stone/20">
               <img
                 src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop"
                 alt="Cast Bronze Hardware Detail"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000 ease-out"
+                className="material-img w-full h-[120%] object-cover object-center"
                 loading="lazy"
               />
             </div>

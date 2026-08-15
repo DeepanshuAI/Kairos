@@ -154,21 +154,24 @@ export const ResidencesShowcase: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center" data-animate>
           
           {/* Image Showcase */}
-          <div className="lg:col-span-7 relative group">
-            <div className="relative aspect-[16/10] bg-charcoal overflow-hidden border border-stone/15">
+          <div className="lg:col-span-7 relative group cursor-pointer" data-cursor="VIEW">
+            <div className="relative aspect-[16/10] bg-charcoal overflow-hidden border border-stone/15 transition-all duration-700 group-hover:border-stone/30 group-hover:shadow-2xl">
               <img
                 ref={imageRef}
                 src={activePlan.image}
                 alt={activePlan.name}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out"
+                className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-60 transition-opacity duration-700 group-hover:opacity-80" />
             </div>
 
-            {/* Floating Spec Badge */}
-            <div className="absolute bottom-6 left-6 right-6 p-4 bg-charcoal/90 backdrop-blur-md border border-stone/20 flex justify-between items-center text-xs">
+            {/* Floating Spec Badge - Slides in slightly on hover */}
+            <div className="absolute bottom-6 left-6 right-6 p-4 bg-charcoal/90 backdrop-blur-md border border-stone/20 flex justify-between items-center text-xs transform transition-all duration-700 translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 group-hover:border-stone/40">
               <span className="font-serif text-base text-ivory">{activePlan.name}</span>
-              <span className="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">{activePlan.area}</span>
+              <span className="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold flex items-center gap-4">
+                {activePlan.area}
+                <ArrowUpRight size={14} className="text-ivory opacity-0 -translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0" />
+              </span>
             </div>
           </div>
 

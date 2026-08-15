@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from '../animations/utils';
 
 export const FinalConversionExperience: React.FC = () => {
   const [interest, setInterest] = useState<'viewing' | 'info' | 'brochure'>('viewing');
@@ -8,6 +9,45 @@ export const FinalConversionExperience: React.FC = () => {
     phone: '',
   });
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (heroRef.current) {
+      gsap.fromTo(
+        heroRef.current,
+        { scale: 0.95, opacity: 0, y: 50 },
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          duration: 1.5,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top 80%',
+          }
+        }
+      );
+    }
+    
+    if (formRef.current) {
+      gsap.fromTo(
+        formRef.current,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: formRef.current,
+            start: 'top 85%',
+          }
+        }
+      );
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,7 +87,7 @@ export const FinalConversionExperience: React.FC = () => {
 
       {/* 2. FINAL CINEMATIC HERO & NARRATIVE CALLBACK */}
       <div className="py-28 md:py-48 bg-ivory text-charcoal border-b border-stone/10 relative">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 text-center space-y-10">
+        <div ref={heroRef} className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 text-center space-y-10">
           
           {/* Subtle Visual Narrative Callback */}
           <div className="flex justify-center items-center gap-3 sm:gap-6 text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-bronze font-semibold">
@@ -101,7 +141,7 @@ export const FinalConversionExperience: React.FC = () => {
 
       {/* 3. PREMIUM ENQUIRY EXPERIENCE */}
       <div id="enquiry-form" className="py-24 md:py-36 border-b border-stone/10 bg-[#121110]">
-        <div className="max-w-3xl mx-auto px-6 space-y-12">
+        <div ref={formRef} className="max-w-3xl mx-auto px-6 space-y-12">
           
           <div className="text-center space-y-4">
             <span className="text-[10px] uppercase tracking-[0.35em] text-bronze font-semibold block">
