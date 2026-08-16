@@ -1,0 +1,192 @@
+{
+  ".oxlintrc.json": {
+    "mtime": 1786819477.0533822,
+    "ast_hash": "1f0703525c59e961c2b7f20e78aa1cd4",
+    "semantic_hash": "1f0703525c59e961c2b7f20e78aa1cd4"
+  },
+  "package.json": {
+    "mtime": 1786819477.0533822,
+    "ast_hash": "8f14906aa3ccd4f1bf243f227034836f",
+    "semantic_hash": "8f14906aa3ccd4f1bf243f227034836f"
+  },
+  "postcss.config.js": {
+    "mtime": 1786819477.0533822,
+    "ast_hash": "ac96fa81e8dd4224012bce81068fe169",
+    "semantic_hash": "ac96fa81e8dd4224012bce81068fe169"
+  },
+  "src/App.tsx": {
+    "mtime": 1786819477.22078,
+    "ast_hash": "b113626284f29d1b466f76f2f6813d52",
+    "semantic_hash": "b113626284f29d1b466f76f2f6813d52"
+  },
+  "src/animations/architectureScroll.ts": {
+    "mtime": 1786820931.5629485,
+    "ast_hash": "79b763cb762e23fddef21ecb84c30932",
+    "semantic_hash": "79b763cb762e23fddef21ecb84c30932"
+  },
+  "src/animations/hero.ts": {
+    "mtime": 1786820303.6735623,
+    "ast_hash": "a04375765620a10c3924f6d32cc25171",
+    "semantic_hash": "a04375765620a10c3924f6d32cc25171"
+  },
+  "src/animations/lifestyleScroll.ts": {
+    "mtime": 1786820533.600662,
+    "ast_hash": "3bd851747ac608136fe6e71e205408f7",
+    "semantic_hash": "3bd851747ac608136fe6e71e205408f7"
+  },
+  "src/animations/materialScroll.ts": {
+    "mtime": 1786819477.2364085,
+    "ast_hash": "fef2ce21499a54d19685848a9310e9e9",
+    "semantic_hash": "fef2ce21499a54d19685848a9310e9e9"
+  },
+  "src/animations/reveal.ts": {
+    "mtime": 1786819477.2364085,
+    "ast_hash": "1e5e2392c1acd377ae48862e4f66037d",
+    "semantic_hash": "1e5e2392c1acd377ae48862e4f66037d"
+  },
+  "src/animations/utils.ts": {
+    "mtime": 1786819477.2364085,
+    "ast_hash": "f2c6d2ac8e2427c6431012cfcea0ea0c",
+    "semantic_hash": "f2c6d2ac8e2427c6431012cfcea0ea0c"
+  },
+  "src/components/ArchitectureStory.tsx": {
+    "mtime": 1786820369.7423923,
+    "ast_hash": "878248dd6603e15f455a2683bf0f2c5a",
+    "semantic_hash": "878248dd6603e15f455a2683bf0f2c5a"
+  },
+  "src/components/CredibilityExperience.tsx": {
+    "mtime": 1786819477.2486072,
+    "ast_hash": "f1269ae2f847ac1495cd5df08f571fb9",
+    "semantic_hash": "f1269ae2f847ac1495cd5df08f571fb9"
+  },
+  "src/components/CustomCursor.tsx": {
+    "mtime": 1786820674.6099656,
+    "ast_hash": "42059ee20dcda72a69675f9d01ad5a25",
+    "semantic_hash": "42059ee20dcda72a69675f9d01ad5a25"
+  },
+  "src/components/FinalConversionExperience.tsx": {
+    "mtime": 1786820715.3424058,
+    "ast_hash": "25972f018165a67eea60a88cff349c61",
+    "semantic_hash": "25972f018165a67eea60a88cff349c61"
+  },
+  "src/components/Hero.tsx": {
+    "mtime": 1786820318.0752738,
+    "ast_hash": "f6ff9059aebad71ecb2c649c3df16043",
+    "semantic_hash": "f6ff9059aebad71ecb2c649c3df16043"
+  },
+  "src/components/InteriorExperience.tsx": {
+    "mtime": 1786819477.2642343,
+    "ast_hash": "f0754ef15e813c32e729513c5ae7425c",
+    "semantic_hash": "f0754ef15e813c32e729513c5ae7425c"
+  },
+  "src/components/LifestyleExperience.tsx": {
+    "mtime": 1786819477.2642343,
+    "ast_hash": "094a7a6dddf5d8eee633fa4428d61910",
+    "semantic_hash": "094a7a6dddf5d8eee633fa4428d61910"
+  },
+  "src/components/LocationExperience.tsx": {
+    "mtime": 1786820583.1058135,
+    "ast_hash": "1b22b54da52f80f0204d2ebe21e5005a",
+    "semantic_hash": "1b22b54da52f80f0204d2ebe21e5005a"
+  },
+  "src/components/MaterialStory.tsx": {
+    "mtime": 1786820506.1015136,
+    "ast_hash": "a2541f4a02372d2108f3c8ea0e9eb400",
+    "semantic_hash": "a2541f4a02372d2108f3c8ea0e9eb400"
+  },
+  "src/components/MaterialTransformation.tsx": {
+    "mtime": 1786819477.2642343,
+    "ast_hash": "1399bc4d6dc650967afe78c395a6e54d",
+    "semantic_hash": "1399bc4d6dc650967afe78c395a6e54d"
+  },
+  "src/components/Navigation.tsx": {
+    "mtime": 1786820951.0005655,
+    "ast_hash": "d66f68096d7aa3cf0fa55866b7493ba4",
+    "semantic_hash": "d66f68096d7aa3cf0fa55866b7493ba4"
+  },
+  "src/components/ResidencesShowcase.tsx": {
+    "mtime": 1786820454.9262218,
+    "ast_hash": "b029a208d136e894e29ad4cddc4c1f92",
+    "semantic_hash": "b029a208d136e894e29ad4cddc4c1f92"
+  },
+  "src/components/SectionRhythm.tsx": {
+    "mtime": 1786819477.2642343,
+    "ast_hash": "d6b6ddbb752117bdf0e9b1c54c8e669a",
+    "semantic_hash": "d6b6ddbb752117bdf0e9b1c54c8e669a"
+  },
+  "src/components/Statement.tsx": {
+    "mtime": 1786820343.392006,
+    "ast_hash": "e1e83d4cb2097175e10fe07500efe81a",
+    "semantic_hash": "e1e83d4cb2097175e10fe07500efe81a"
+  },
+  "src/main.tsx": {
+    "mtime": 1786819477.2798595,
+    "ast_hash": "7b0c69c7858f8b2edfdfdd25b4987b85",
+    "semantic_hash": "7b0c69c7858f8b2edfdfdd25b4987b85"
+  },
+  "src/styles/tokens.ts": {
+    "mtime": 1786819477.2798595,
+    "ast_hash": "759234d5475c7a56441bc6e269a0c0af",
+    "semantic_hash": "759234d5475c7a56441bc6e269a0c0af"
+  },
+  "src/three/CameraController.tsx": {
+    "mtime": 1786819477.2798595,
+    "ast_hash": "5cddad4f816961ff2344f941415392ec",
+    "semantic_hash": "5cddad4f816961ff2344f941415392ec"
+  },
+  "src/three/Lighting.tsx": {
+    "mtime": 1786819477.2798595,
+    "ast_hash": "87bfe56f98fcaaf2737ee93536d0ebf1",
+    "semantic_hash": "87bfe56f98fcaaf2737ee93536d0ebf1"
+  },
+  "src/three/Materials.ts": {
+    "mtime": 1786819477.2798595,
+    "ast_hash": "af49607a3fcfb703f8671ca9fd5c0fc4",
+    "semantic_hash": "af49607a3fcfb703f8671ca9fd5c0fc4"
+  },
+  "src/three/ResidenceModel.tsx": {
+    "mtime": 1786819477.2798595,
+    "ast_hash": "a52fb8840989790362d274a7a2f902f4",
+    "semantic_hash": "a52fb8840989790362d274a7a2f902f4"
+  },
+  "src/three/ResidenceScene.tsx": {
+    "mtime": 1786819477.2798595,
+    "ast_hash": "46d31663c3bc973b3aabd854d1f144fe",
+    "semantic_hash": "46d31663c3bc973b3aabd854d1f144fe"
+  },
+  "src/three/useResidenceScroll.ts": {
+    "mtime": 1786820428.280094,
+    "ast_hash": "abd69944378f7b1619bccac2c15b447f",
+    "semantic_hash": "abd69944378f7b1619bccac2c15b447f"
+  },
+  "tailwind.config.js": {
+    "mtime": 1786819477.3734815,
+    "ast_hash": "028d13ca07e546ee115f81affbf6e394",
+    "semantic_hash": "028d13ca07e546ee115f81affbf6e394"
+  },
+  "tsconfig.app.json": {
+    "mtime": 1786819477.3734815,
+    "ast_hash": "e4f83bdfdf660f5e5364945e14291d70",
+    "semantic_hash": "e4f83bdfdf660f5e5364945e14291d70"
+  },
+  "tsconfig.json": {
+    "mtime": 1786819477.3734815,
+    "ast_hash": "852c3a5df14a4b43ac28e9554ebedf4a",
+    "semantic_hash": "852c3a5df14a4b43ac28e9554ebedf4a"
+  },
+  "tsconfig.node.json": {
+    "mtime": 1786819477.3734815,
+    "ast_hash": "74cde0261ad0a13045ca0a05ab1542ae",
+    "semantic_hash": "74cde0261ad0a13045ca0a05ab1542ae"
+  },
+  "vercel.json": {
+    "mtime": 1786819477.3734815,
+    "ast_hash": "7708fbf29b99cd92c2a778d60001c5ba",
+    "semantic_hash": "7708fbf29b99cd92c2a778d60001c5ba"
+  },
+  "vite.config.ts": {
+    "mtime": 1786819477.3734815,
+    "ast_hash": "199e1221ae03d6974fdc8b5e23787b98",
+    "semantic_hash": "199e1221ae03d6974fdc8b5e23787b98"
+  }
+}

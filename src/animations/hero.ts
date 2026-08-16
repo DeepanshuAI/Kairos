@@ -2,7 +2,6 @@ import { gsap, cinematicEase, smoothScrub } from './utils';
 
 export interface HeroAnimationRefs {
   container: HTMLElement | null;
-  bgImage: HTMLElement | null;
   tagline: HTMLElement | null;
   titleLines: (HTMLElement | null)[];
   subtitle: HTMLElement | null;
@@ -11,7 +10,7 @@ export interface HeroAnimationRefs {
 }
 
 export const animateHeroEntrance = (refs: HeroAnimationRefs) => {
-  const { container, bgImage, tagline, titleLines, subtitle, ctas, scrollIndicator } = refs;
+  const { container, tagline, titleLines, subtitle, ctas, scrollIndicator } = refs;
   if (!container) return;
 
   // 1. ENTRANCE TIMELINE (Plays once on load)
@@ -19,15 +18,7 @@ export const animateHeroEntrance = (refs: HeroAnimationRefs) => {
     defaults: { ease: cinematicEase }
   });
 
-  if (bgImage) {
-    gsap.set(bgImage, { scale: 1.08, filter: 'brightness(0.85)' });
-    tl.to(bgImage, {
-      scale: 1,
-      filter: 'brightness(1)',
-      duration: 2.8,
-      ease: "power3.out"
-    }, 0);
-  }
+
 
   if (tagline) {
     tl.fromTo(tagline, { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2 }, 0.4);
@@ -60,10 +51,7 @@ export const animateHeroEntrance = (refs: HeroAnimationRefs) => {
     }
   });
 
-  if (bgImage) {
-    // Zoom slowly and slightly push down
-    scrollTl.to(bgImage, { scale: 1.1, y: '5%', ease: 'none' }, 0);
-  }
+
 
   if (validTitleLines.length > 0) {
     // Subtle typography parallax

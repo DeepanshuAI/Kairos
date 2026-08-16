@@ -53,11 +53,12 @@ export const Statement: React.FC = () => {
     <section 
       id="statement"
       ref={sectionRef}
-      className="relative w-full min-h-[70vh] flex flex-col justify-center py-32 md:py-48 lg:py-56 bg-ivory text-charcoal border-b border-stone/20 overflow-hidden"
+      className="relative w-full h-[150vh] bg-transparent text-ivory border-b border-stone/15 overflow-hidden"
     >
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 text-center space-y-12">
-        <p 
-          ref={tagRef}
+      <div className="sticky top-0 w-full h-screen flex flex-col justify-center">
+        <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12 lg:px-16 text-center space-y-12">
+          <p 
+            ref={tagRef}
           className="text-[10px] md:text-xs uppercase tracking-[0.35em] font-medium text-bronze"
         >
           THE PHILOSOPHY
@@ -65,15 +66,15 @@ export const Statement: React.FC = () => {
 
         <h2 
           ref={textRef}
-          className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.18] text-charcoal max-w-5xl mx-auto"
+          className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.18] text-ivory max-w-5xl mx-auto"
         >
           Natural stone, warm bronze, and uninterrupted light.<br />
-          <span className="italic text-charcoal/70 font-normal mt-4 block">Architecture reduced to its purest form.</span>
+          <span className="italic text-stone/80 font-normal mt-4 block">Architecture reduced to its purest form.</span>
         </h2>
 
         <div 
           ref={lineRef}
-          className="w-12 h-px bg-bronze/40 mx-auto origin-center" 
+          className="w-12 h-px bg-bronze/60 mx-auto origin-center" 
         />
 
         <p 
@@ -82,6 +83,7 @@ export const Statement: React.FC = () => {
         >
           Rewari • Haryana
         </p>
+      </div>
       </div>
     </section>
   );

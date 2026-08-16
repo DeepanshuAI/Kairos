@@ -3,11 +3,6 @@ import { initArchitectureScrollStory } from '../animations/architectureScroll';
 
 export const ArchitectureStory: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const stickyWrapperRef = useRef<HTMLDivElement>(null);
-  
-  const bg1Ref = useRef<HTMLDivElement>(null);
-  const bg2Ref = useRef<HTMLDivElement>(null);
-  const bg3Ref = useRef<HTMLDivElement>(null);
   
   const ch1Ref = useRef<HTMLDivElement>(null);
   const ch2Ref = useRef<HTMLDivElement>(null);
@@ -19,10 +14,6 @@ export const ArchitectureStory: React.FC = () => {
   useEffect(() => {
     const mm = initArchitectureScrollStory({
       container: containerRef.current,
-      stickyWrapper: stickyWrapperRef.current,
-      bgImage1: bg1Ref.current,
-      bgImage2: bg2Ref.current,
-      bgImage3: bg3Ref.current,
       chapter1Text: ch1Ref.current,
       chapter2Text: ch2Ref.current,
       chapter3Text: ch3Ref.current,
@@ -35,56 +26,17 @@ export const ArchitectureStory: React.FC = () => {
     };
   }, []);
 
+
+
   return (
     <section 
       id="architecture"
       ref={containerRef}
-      className="relative w-full bg-charcoal text-ivory min-h-screen"
+      className="relative w-full bg-transparent text-ivory h-[250vh]"
     >
       {/* Sticky Full-Viewport Stage */}
-      <div 
-        ref={stickyWrapperRef}
-        className="relative w-full h-screen flex flex-col justify-between overflow-hidden"
-      >
-        {/* Layer 0: Background Image Canvas Stack */}
-        <div className="absolute inset-0 z-0">
-          {/* Chapter 1 Background Image: Monolithic Exterior */}
-          <div 
-            ref={bg1Ref}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-300"
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2560&auto=format&fit=crop')`,
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-charcoal/60" />
-            <div className="absolute inset-0 bg-gradient-to-r from-charcoal/80 via-transparent to-charcoal/40" />
-          </div>
-
-          {/* Chapter 2 Background Image: Materiality & Concrete Detail */}
-          <div 
-            ref={bg2Ref}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-300 opacity-0"
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2560&auto=format&fit=crop')`,
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-charcoal/70" />
-            <div className="absolute inset-0 bg-gradient-to-r from-charcoal/85 via-charcoal/40 to-transparent" />
-          </div>
-
-          {/* Chapter 3 Background Image: Spatial Horizon */}
-          <div 
-            ref={bg3Ref}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-300 opacity-0"
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2560&auto=format&fit=crop')`,
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-charcoal/60" />
-            <div className="absolute inset-0 bg-gradient-to-r from-charcoal/80 via-transparent to-charcoal/40" />
-          </div>
-        </div>
-
+      <div className="sticky top-0 w-full h-screen flex flex-col justify-between overflow-hidden">
+        
         {/* Layer 1: Top Section Identifier Header */}
         <div className="relative z-10 max-w-[1800px] w-full mx-auto px-6 md:px-12 lg:px-16 pt-20 md:pt-28 flex justify-between items-start">
           <div className="flex flex-col">

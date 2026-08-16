@@ -52,7 +52,7 @@ export const MaterialStory: React.FC = () => {
   }, []);
 
   return (
-    <section id="details" ref={containerRef} className="bg-[#141312] text-ivory border-b border-stone/10 overflow-hidden">
+    <section id="materials" ref={containerRef} className="bg-[#141312] text-ivory border-b border-stone/10 overflow-hidden">
       
       {/* 0. TRANSITION LABEL */}
       <div className="pt-24 md:pt-36 max-w-4xl mx-auto px-6 text-center">

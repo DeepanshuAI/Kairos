@@ -14,7 +14,6 @@ export const Hero: React.FC = () => {
   useEffect(() => {
     const anims = animateHeroEntrance({
       container: containerRef.current,
-      bgImage: bgRef.current,
       tagline: taglineRef.current,
       titleLines: [line1Ref.current, line2Ref.current],
       subtitle: subtitleRef.current,
@@ -30,27 +29,16 @@ export const Hero: React.FC = () => {
 
   return (
     <section 
+      id="hero"
       ref={containerRef}
-      className="relative w-full h-screen min-h-[720px] flex flex-col justify-between overflow-hidden bg-charcoal text-ivory group"
+      className="relative w-full h-[150vh] bg-transparent text-ivory group"
     >
-      {/* Background Architectural Canvas - Building as Protagonist */}
-      <div 
-        ref={bgRef}
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[2000ms] ease-out hover-scale"
-        style={{
-          // High-clarity architectural estate exterior with clear lighting and building dominance
-          backgroundImage: `url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2560&auto=format&fit=crop')`,
-        }}
-      >
-        {/* Subtle, highly controlled architectural vignette (lighting clarity, no mud/heavy darkness) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/70 via-charcoal/20 to-transparent" />
-      </div>
+      {/* Sticky Content Wrapper */}
+      <div className="sticky top-0 w-full h-screen min-h-[720px] flex flex-col justify-between overflow-hidden">
+        {/* Top Spacer for Navigation */}
+        <div className="relative z-10 h-24 md:h-32" />
 
-      {/* Top Spacer for Navigation */}
-      <div className="relative z-10 h-24 md:h-32" />
-
-      {/* Main Hero Content Composition */}
+        {/* Main Hero Content Composition */}
       <div className="relative z-10 max-w-[1800px] w-full mx-auto px-6 md:px-12 lg:px-16 py-8 flex flex-col justify-center flex-grow">
         <div className="max-w-4xl space-y-6 md:space-y-8">
           
@@ -149,6 +137,7 @@ export const Hero: React.FC = () => {
             <div className="absolute top-0 left-0 w-full h-full bg-bronze transform sm:-translate-x-full translate-y-full sm:translate-y-0 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700 ease-in-out" />
           </div>
         </a>
+      </div>
       </div>
     </section>
   );
