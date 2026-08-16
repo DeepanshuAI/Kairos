@@ -2,17 +2,17 @@ import { useEffect, useRef } from 'react';
 import { gsap, prefersReducedMotion } from '../animations/utils';
 
 export const useGlobalScrollCamera = () => {
-  // Start at the exact first waypoint (0 degrees)
-  const currentPos = useRef<[number, number, number]>([0, 5.5, 26]);
-  const currentTarget = useRef<[number, number, number]>([0, 2, 0]);
+  // Start at the exact first waypoint (0 degrees, radius 48, height 14)
+  const currentPos = useRef<[number, number, number]>([0, 14, 48]);
+  const currentTarget = useRef<[number, number, number]>([0, 3.5, 0]);
   const scrollProgress = useRef<number>(0);
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
 
     const proxy = {
-      x: 0, y: 5.5, z: 26,
-      tx: 0, ty: 2, tz: 0,
+      x: 0, y: 14, z: 48,
+      tx: 0, ty: 3.5, tz: 0,
       globalProgress: 0,
       heroAngle: 0, // In degrees
     };
@@ -43,7 +43,7 @@ export const useGlobalScrollCamera = () => {
       triggerId: string, 
       startPos: number[], endPos: number[], 
       startTarget: number[], endTarget: number[],
-      scrubSpeed = 1.5
+      scrubSpeed = 1.2
     ) => {
       const el = document.getElementById(triggerId);
       if (!el) return;
@@ -69,78 +69,67 @@ export const useGlobalScrollCamera = () => {
       triggers.push(t);
     };
 
-    const centerTarget = [0, 2, 0];
-    const archTarget   = [0.5, 2.2, 0];
+    const centerTarget = [0, 3.5, 0];
+    const archTarget   = [2, 4.0, 0];
 
-    // 1. HERO 360-DEGREE ORBIT
+    // 1. HERO CONTINUOUS CINEMATIC 360-DEGREE ORBIT
+    // Radius = 48 (Building half-width is 28.2, corner distance is 40.1, so radius 48 is completely collision-free)
     const heroEl = document.getElementById('hero');
     if (heroEl) {
-      // Create a timeline specifically for the hero's angle
       const heroTl = gsap.timeline({
         scrollTrigger: {
           trigger: heroEl,
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 1,
+          scrub: 0.8,
         }
       });
 
-      // The radius and base height
-      const r = 26;
-      const h = 5.5;
+      const r = 48;
+      const h = 14;
 
-      // Update proxy x/z based on heroAngle
       const onHeroUpdate = () => {
         const rad = proxy.heroAngle * (Math.PI / 180);
         proxy.x = Math.sin(rad) * r;
         proxy.z = Math.cos(rad) * r;
-        // Subtle elevation changes
-        proxy.y = h + Math.sin(rad * 2) * 1.5; 
+        // Gentle, elegant elevation glide
+        proxy.y = h + Math.sin(rad * 2) * 1.8;
+        proxy.tx = Math.sin(rad) * 1.5;
+        proxy.ty = 3.5;
+        proxy.tz = Math.cos(rad) * 1.5;
         onUpdate();
       };
 
-      // 0-25%: Beat 1 (0 to 60 deg)
-      heroTl.fromTo(proxy, { heroAngle: 0 }, { heroAngle: 60, ease: 'power1.inOut', duration: 1, onUpdate: onHeroUpdate });
-      // 25-50%: Beat 2 (60 to 120, wait, then to 150)
-      heroTl.to(proxy, { heroAngle: 120, ease: 'power1.inOut', duration: 1, onUpdate: onHeroUpdate });
-      heroTl.to(proxy, { heroAngle: 150, ease: 'power1.out', duration: 1, onUpdate: onHeroUpdate });
-      // 50-75%: Beat 3 (150 to 220, wait, then to 250)
-      heroTl.to(proxy, { heroAngle: 220, ease: 'power1.inOut', duration: 1, onUpdate: onHeroUpdate });
-      heroTl.to(proxy, { heroAngle: 250, ease: 'power1.out', duration: 1, onUpdate: onHeroUpdate });
-      // 75-100%: Beat 4 (250 to 320, then to 360)
-      heroTl.to(proxy, { heroAngle: 320, ease: 'power1.inOut', duration: 1, onUpdate: onHeroUpdate });
-      heroTl.to(proxy, { heroAngle: 360, ease: 'power1.out', duration: 1.5, onUpdate: onHeroUpdate });
+      // 4 Synchronized Beats spanning total timeline of 10.0 duration
+      // Beat 1: 0 - 2.5 (0° -> 75°)
+      heroTl.fromTo(proxy, { heroAngle: 0 }, { heroAngle: 75, ease: 'power1.inOut', duration: 2.5, onUpdate: onHeroUpdate }, 0);
+      // Beat 2: 2.5 - 5.0 (75° -> 160°)
+      heroTl.to(proxy, { heroAngle: 160, ease: 'power1.inOut', duration: 2.5, onUpdate: onHeroUpdate }, 2.5);
+      // Beat 3: 5.0 - 7.5 (160° -> 250°)
+      heroTl.to(proxy, { heroAngle: 250, ease: 'power1.inOut', duration: 2.5, onUpdate: onHeroUpdate }, 5.0);
+      // Beat 4: 7.5 - 10.0 (250° -> 340° / Final stable composition)
+      heroTl.to(proxy, { heroAngle: 340, ease: 'power1.out', duration: 2.5, onUpdate: onHeroUpdate }, 7.5);
 
       triggers.push(heroTl);
     }
 
-    // Waypoints for subsequent sections
-    // End of hero is at 360 degrees (which is x:0, z:26, y:5.5)
-    const wp1_statement = [0, 5.5, 26];
-    
-    // Architecture: 15-40 degree orbit, slight elevation focus on facade
-    // Let's just use fixed coordinates for simplicity
-    const wp2_arch      = [8, 4, 24];
-    
-    // Residences: move toward a specific architectural area
-    const wp3_res       = [15, 3, 20];
-    
-    // Horizon: wider 60-90 degree controlled orbit
-    const wp4_horizon   = [22, 6, 12];
-    
-    // Light journey: continue orbit into evening light
-    const wp5_light     = [26, 5, 0];
-    
-    // Final reveal: Pull far away to see entire estate
-    const wp6_depart    = [0, 15, 55];
+    // Waypoints for subsequent sections (all maintained at safe radius >= 46)
+    // End of hero is at 340 degrees:
+    const radEnd = 340 * (Math.PI / 180);
+    const heroEndPos    = [Math.sin(radEnd) * 48, 14, Math.cos(radEnd) * 48];
+    const wp1_statement = [12, 13, 46];
+    const wp2_arch      = [24, 11, 42];
+    const wp3_res       = [36, 12, 34];
+    const wp4_horizon   = [44, 16, 20];
+    const wp5_light     = [48, 13, 0];
+    const wp6_depart    = [0, 26, 80];  // Final reveal: Majestic pull-back to see full estate
 
     // Connect the waypoints with transitions that hold while the user reads
+    addTransition('statement',    heroEndPos,        wp1_statement, centerTarget, centerTarget);
     addTransition('architecture', wp1_statement,     wp2_arch,      centerTarget, archTarget);
     addTransition('residences',   wp2_arch,          wp3_res,       archTarget,   centerTarget);
     addTransition('horizon',      wp3_res,           wp4_horizon,   centerTarget, centerTarget);
     addTransition('light-journey',wp4_horizon,       wp5_light,     centerTarget, centerTarget);
-    
-    // During interiors, materials, lifestyle (opaque sections), camera holds position.
     
     // Final reveal transition
     const contactEl = document.getElementById('contact');
@@ -151,7 +140,7 @@ export const useGlobalScrollCamera = () => {
           ease: 'power1.inOut',
           scrollTrigger: {
             trigger: contactEl,
-            start: 'top bottom', // Start pulling back as soon as contact enters viewport
+            start: 'top bottom',
             end: 'bottom bottom',
             scrub: 2,
             onUpdate,

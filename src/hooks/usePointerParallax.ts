@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { gsap, prefersReducedMotion } from '../animations/utils';
 
 export const usePointerParallax = (
-  ref: React.RefObject<HTMLElement>,
+  ref: React.RefObject<HTMLElement | null>,
   strength: number = 10,
   damping: number = 0.1
 ) => {

@@ -4,10 +4,10 @@ import * as THREE from 'three';
 import { gsap } from '../animations/utils';
 
 interface DynamicLightingProps {
-  scrollProgress: React.RefObject<number>;
+  scrollProgress?: React.RefObject<number>;
 }
 
-export const DynamicLighting: React.FC<DynamicLightingProps> = ({ scrollProgress }) => {
+export const DynamicLighting: React.FC<DynamicLightingProps> = () => {
   const sunLightRef = useRef<THREE.DirectionalLight>(null);
   const ambientRef = useRef<THREE.AmbientLight>(null);
   const interiorLightRef = useRef<THREE.PointLight>(null);

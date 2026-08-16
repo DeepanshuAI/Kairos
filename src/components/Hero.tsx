@@ -28,25 +28,25 @@ export const Hero: React.FC = () => {
     <section 
       id="hero"
       ref={containerRef}
-      className="relative w-full h-[400vh] bg-transparent text-ivory group"
+      className="relative w-full h-[320vh] bg-transparent text-ivory group"
     >
       {/* Sticky Content Wrapper */}
-      <div className="sticky top-0 w-full h-screen min-h-[720px] flex flex-col justify-between overflow-hidden">
+      <div className="sticky top-0 w-full h-screen min-h-[680px] flex flex-col justify-between overflow-hidden">
         {/* Top Spacer for Navigation */}
-        <div className="relative z-10 h-24 md:h-32" />
+        <div className="relative z-10 h-20 md:h-28" />
 
         {/* Main Hero Content Composition */}
         <div className="relative z-10 max-w-[1800px] w-full mx-auto px-6 md:px-12 lg:px-16 flex flex-col justify-center flex-grow">
           
           <div className="relative w-full max-w-4xl min-h-[300px]">
-            {/* Beat 1: Arrival */}
+            {/* Beat 1: Opening / Arrival (0–25%) */}
             <div ref={beat1Ref} className="absolute inset-0 flex flex-col justify-center space-y-6">
               <p className="text-[10px] md:text-xs uppercase tracking-[0.35em] font-medium text-bronze">
                 Private Sanctuary • Rewari, Haryana
               </p>
               <div className="space-y-0 md:space-y-1">
                 <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-tight leading-[0.92] text-ivory">
-                  LIVE ABOVE
+                  LIVE ABOVE.
                 </h1>
                 <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-tight leading-[0.92] text-ivory/90 italic pl-1 md:pl-4">
                   ORDINARY.
@@ -54,34 +54,37 @@ export const Hero: React.FC = () => {
               </div>
             </div>
 
-            {/* Beat 2: Architecture */}
+            {/* Beat 2: Architecture & Materials (25–50%) */}
             <div ref={beat2Ref} className="absolute inset-0 flex flex-col justify-center space-y-4 opacity-0 pointer-events-none">
               <span className="text-[10px] uppercase tracking-[0.3em] text-bronze font-medium block">
-                MATERIAL CRAFT
+                01 • ARCHITECTURE & DETAIL
               </span>
-              <h2 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-light leading-[1.05] text-ivory">
-                Natural stone.<br/>
-                <span className="italic text-ivory/90">Warm bronze.</span><br/>
-                Uninterrupted light.
+              <h2 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-light leading-[1.08] text-ivory">
+                Natural stone,<br/>
+                <span className="italic text-ivory/90">warm bronze,</span><br/>
+                and uninterrupted light.
               </h2>
             </div>
 
-            {/* Beat 3: Light & Residences */}
+            {/* Beat 3: Light & Residences (50–75%) */}
             <div ref={beat3Ref} className="absolute inset-0 flex flex-col justify-center space-y-4 opacity-0 pointer-events-none">
               <span className="text-[10px] uppercase tracking-[0.3em] text-bronze font-medium block">
-                ATMOSPHERE
+                02 • ATMOSPHERE & SCALE
               </span>
-              <h2 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-light leading-[1.05] text-ivory">
+              <h2 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-light leading-[1.08] text-ivory">
                 Designed around the<br/>
                 <span className="italic text-ivory/90">movement of light.</span>
               </h2>
-              <p className="text-sm font-light text-stone/80 max-w-md pt-4">
+              <p className="text-sm md:text-base font-light text-stone/80 max-w-md pt-2">
                 Twelve residences. One private address.
               </p>
             </div>
 
-            {/* Beat 4: Resolution */}
+            {/* Beat 4: Final Reveal (75–100%) */}
             <div ref={beat4Ref} className="absolute inset-0 flex flex-col justify-center space-y-8 opacity-0 pointer-events-none">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-bronze font-medium block">
+                03 • PRIVATE ENCLAVE
+              </span>
               <h2 className="font-serif text-5xl sm:text-7xl md:text-8xl font-light tracking-tight leading-[0.92] text-ivory">
                 KAIROS.
               </h2>
@@ -101,7 +104,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Minimal Scroll Indicator */}
-        <div className="relative z-10 max-w-[1800px] w-full mx-auto px-6 md:px-12 lg:px-16 pb-12 flex justify-start">
+        <div className="relative z-10 max-w-[1800px] w-full mx-auto px-6 md:px-12 lg:px-16 pb-10 flex justify-start">
           <div ref={scrollIndRef} className="flex items-center gap-4">
             <span className="text-[9px] uppercase tracking-[0.3em] text-stone/50 font-medium">Scroll</span>
             <div className="w-px h-12 bg-stone/20 relative overflow-hidden">

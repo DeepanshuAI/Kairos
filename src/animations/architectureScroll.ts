@@ -2,10 +2,10 @@ import { gsap } from './utils';
 
 export interface ArchitectureScrollRefs {
   container: HTMLElement | null;
-  stickyWrapper: HTMLElement | null;
-  bgImage1: HTMLElement | null;
-  bgImage2: HTMLElement | null;
-  bgImage3: HTMLElement | null;
+  stickyWrapper?: HTMLElement | null;
+  bgImage1?: HTMLElement | null;
+  bgImage2?: HTMLElement | null;
+  bgImage3?: HTMLElement | null;
   chapter1Text: HTMLElement | null;
   chapter2Text: HTMLElement | null;
   chapter3Text: HTMLElement | null;
