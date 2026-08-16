@@ -15,7 +15,7 @@ export const LifestyleExperience: React.FC = () => {
   }, []);
 
   return (
-    <section id="lifestyle" ref={containerRef} className="bg-[#121110] text-ivory overflow-hidden">
+    <section id="lifestyle" ref={containerRef} className="relative z-10 bg-[#121110] text-ivory overflow-hidden">
       
       {/* 1. EDITORIAL TRANSITION INTO LIFESTYLE */}
       <div className="lifestyle-header py-28 md:py-40 border-b border-stone/10 bg-charcoal">

@@ -56,11 +56,31 @@ export const App: React.FC = () => {
         {/* 05 - THE RESIDENCES (Interactive Showcase) */}
         <ResidencesShowcase />
 
-        {/* 06 - INTERIOR ATMOSPHERE ("Then, the world turns inward.") */}
-        <InteriorExperience />
+        {/* 04 - HORIZON / 360 (3D Cinematic Orbit) */}
+        <section id="horizon" className="relative w-full h-[200vh] pointer-events-none">
+          <div className="sticky top-1/2 -translate-y-1/2 w-full text-center mix-blend-difference text-ivory z-10 px-6">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-bronze font-medium block mb-4">04 • HORIZON</span>
+            <h2 className="font-serif text-4xl sm:text-6xl font-light">360° Uninterrupted View.</h2>
+          </div>
+        </section>
 
-        {/* 07 - MATERIAL STORY (Stone • Wood • Light • Glass • Craft) */}
-        <MaterialStory />
+        {/* 05 - LIGHT JOURNEY (3D Day to Night) */}
+        <section id="light-journey" className="relative w-full h-[200vh] pointer-events-none">
+          <div className="sticky top-1/2 -translate-y-1/2 w-full text-center mix-blend-difference text-ivory z-10 px-6">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-bronze font-medium block mb-4">05 • ATMOSPHERE</span>
+            <h2 className="font-serif text-4xl sm:text-6xl font-light">Designed around the movement of light.</h2>
+          </div>
+        </section>
+
+        {/* 06 - INTERIOR ATMOSPHERE ("Then, the world turns inward.") */}
+        <div className="relative z-10">
+          <InteriorExperience />
+        </div>
+
+        {/* 07 - MATERIAL STORY (Stone • Wood • Glass • Craft) */}
+        <div className="relative z-10">
+          <MaterialStory />
+        </div>
 
         {/* 08 - LIFESTYLE EXPERIENCE (Morning -> Living -> Connection -> Stillness -> Evening) */}
         <LifestyleExperience />

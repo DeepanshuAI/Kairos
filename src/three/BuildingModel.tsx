@@ -63,38 +63,38 @@ export const BuildingModel: React.FC = () => {
       </mesh>
 
       {/* 3D Annotations for Material / Architectural points */}
-      <Html position={[-3, 5, 4]} distanceFactor={25} className="pointer-events-none transition-opacity duration-1000">
+      <Html position={[-3, 5, 4]} distanceFactor={25} className="pointer-events-none transition-opacity duration-1000 annotation-marker opacity-0">
         <div className="flex flex-col items-center gap-2 -translate-x-1/2 -translate-y-1/2">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 bg-bronze rounded-full animate-ping absolute opacity-50" />
             <div className="w-1.5 h-1.5 bg-bronze rounded-full shadow-[0_0_8px_rgba(202,168,124,0.6)]" />
           </div>
           <div className="text-[10px] uppercase tracking-[0.2em] text-ivory font-medium bg-[#0f0f0f]/90 border border-stone/20 px-3 py-1.5 backdrop-blur-md whitespace-nowrap shadow-2xl">
-            Acoustic Glass Pavilion
+            ACOUSTIC GLASS
           </div>
         </div>
       </Html>
 
-      <Html position={[2, 2.5, 6]} distanceFactor={25} className="pointer-events-none transition-opacity duration-1000">
+      <Html position={[2, 2.5, 6]} distanceFactor={25} className="pointer-events-none transition-opacity duration-1000 annotation-marker opacity-0">
         <div className="flex flex-col items-center gap-2 -translate-x-1/2 -translate-y-1/2">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 bg-bronze rounded-full animate-ping absolute opacity-50" />
             <div className="w-1.5 h-1.5 bg-bronze rounded-full shadow-[0_0_8px_rgba(202,168,124,0.6)]" />
           </div>
           <div className="text-[10px] uppercase tracking-[0.2em] text-ivory font-medium bg-[#0f0f0f]/90 border border-stone/20 px-3 py-1.5 backdrop-blur-md whitespace-nowrap shadow-2xl">
-            Travertine Core
+            TRAVERTINE STONE
           </div>
         </div>
       </Html>
 
-      <Html position={[-1.5, 8, -2]} distanceFactor={25} className="pointer-events-none transition-opacity duration-1000">
+      <Html position={[-1.5, 8, -2]} distanceFactor={25} className="pointer-events-none transition-opacity duration-1000 annotation-marker opacity-0">
         <div className="flex flex-col items-center gap-2 -translate-x-1/2 -translate-y-1/2">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 bg-bronze rounded-full animate-ping absolute opacity-50" />
             <div className="w-1.5 h-1.5 bg-bronze rounded-full shadow-[0_0_8px_rgba(202,168,124,0.6)]" />
           </div>
           <div className="text-[10px] uppercase tracking-[0.2em] text-ivory font-medium bg-[#0f0f0f]/90 border border-stone/20 px-3 py-1.5 backdrop-blur-md whitespace-nowrap shadow-2xl">
-            Penthouse Terrace
+            NATURAL LIGHT
           </div>
         </div>
       </Html>

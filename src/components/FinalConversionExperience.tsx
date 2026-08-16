@@ -63,10 +63,10 @@ export const FinalConversionExperience: React.FC = () => {
   };
 
   return (
-    <div id="contact" className="bg-charcoal text-ivory overflow-hidden">
+    <div id="contact" className="text-ivory overflow-hidden relative">
       
       {/* 1. TRANSITION FROM PHASE 6 */}
-      <div className="py-24 md:py-36 border-b border-stone/10 bg-charcoal">
+      <div className="py-24 md:py-36 border-b border-stone/10 bg-transparent relative z-0 pointer-events-none">
         <div className="max-w-4xl mx-auto px-6 text-center space-y-8">
           <div className="flex flex-col items-center">
             <span className="text-[10px] md:text-xs uppercase tracking-[0.35em] text-bronze font-medium block">
@@ -86,7 +86,7 @@ export const FinalConversionExperience: React.FC = () => {
       </div>
 
       {/* 2. FINAL CINEMATIC HERO & NARRATIVE CALLBACK */}
-      <div className="py-28 md:py-48 bg-ivory text-charcoal border-b border-stone/10 relative">
+      <div className="py-28 md:py-48 bg-transparent text-ivory border-b border-stone/10 relative z-0 pointer-events-none">
         <div ref={heroRef} className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 text-center space-y-10">
           
           {/* Subtle Visual Narrative Callback */}
@@ -101,17 +101,17 @@ export const FinalConversionExperience: React.FC = () => {
             <span>•</span>
             <span>LIFE</span>
             <span>→</span>
-            <span className="text-charcoal font-serif text-xs font-normal italic">KAIROS</span>
+            <span className="text-ivory font-serif text-xs font-normal italic">KAIROS</span>
           </div>
 
           {/* Monumental Headline */}
-          <h2 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-tight leading-[0.92] text-charcoal max-w-5xl mx-auto">
+          <h2 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-tight leading-[0.92] text-ivory max-w-5xl mx-auto mix-blend-difference">
             YOUR NEXT <br />
             CHAPTER <br />
             <span className="italic font-normal">STARTS HERE.</span>
           </h2>
 
-          <p className="max-w-md mx-auto text-xs md:text-sm font-light text-charcoal/70 tracking-wide leading-relaxed">
+          <p className="max-w-md mx-auto text-xs md:text-sm font-light text-ivory/80 tracking-wide leading-relaxed">
             Twelve private estates. One singular address. Begin your exploration with our principal estate director.
           </p>
 
@@ -139,8 +139,8 @@ export const FinalConversionExperience: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. PREMIUM ENQUIRY EXPERIENCE */}
-      <div id="enquiry-form" className="py-24 md:py-36 border-b border-stone/10 bg-[#121110]">
+      {/* 3. PREMIUM ENQUIRY EXPERIENCE (Opaque to hide 3D) */}
+      <div id="enquiry-form" className="relative z-10 py-24 md:py-36 border-t border-stone/10 bg-[#121110]">
         <div ref={formRef} className="max-w-3xl mx-auto px-6 space-y-12">
           
           <div className="text-center space-y-4">
@@ -315,7 +315,7 @@ export const FinalConversionExperience: React.FC = () => {
       </div>
 
       {/* 6. QUIET MINIMAL FOOTER */}
-      <footer className="py-16 bg-[#0a0a0a] text-stone border-t border-stone/10 text-xs tracking-wider">
+      <footer className="relative z-10 py-16 bg-[#0a0a0a] text-stone border-t border-stone/10 text-xs tracking-wider">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 flex flex-col md:flex-row justify-between items-center gap-10">
           
           <div className="space-y-1 text-center md:text-left">

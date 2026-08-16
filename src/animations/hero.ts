@@ -4,13 +4,12 @@ export interface HeroAnimationRefs {
   container: HTMLElement | null;
   tagline: HTMLElement | null;
   titleLines: (HTMLElement | null)[];
-  subtitle: HTMLElement | null;
   ctas: HTMLElement | null;
   scrollIndicator: HTMLElement | null;
 }
 
 export const animateHeroEntrance = (refs: HeroAnimationRefs) => {
-  const { container, tagline, titleLines, subtitle, ctas, scrollIndicator } = refs;
+  const { container, tagline, titleLines, ctas, scrollIndicator } = refs;
   if (!container) return;
 
   // 1. ENTRANCE TIMELINE (Plays once on load)
@@ -29,9 +28,6 @@ export const animateHeroEntrance = (refs: HeroAnimationRefs) => {
     tl.fromTo(validTitleLines, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, stagger: 0.2 }, 0.6);
   }
 
-  if (subtitle) {
-    tl.fromTo(subtitle, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2 }, 1.2);
-  }
 
   if (ctas) {
     tl.fromTo(ctas, { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0 }, 1.4);

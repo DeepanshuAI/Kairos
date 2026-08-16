@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { gsap } from '../animations/utils';
 
 interface DynamicLightingProps {
   scrollProgress: React.RefObject<number>;
@@ -14,22 +15,39 @@ export const DynamicLighting: React.FC<DynamicLightingProps> = ({ scrollProgress
   const sunColor = React.useMemo(() => new THREE.Color(), []);
   const ambientColor = React.useMemo(() => new THREE.Color(), []);
 
-  useFrame(() => {
-    const p = scrollProgress.current ?? 0;
+  const timeOfDayRef = useRef<number>(0);
 
-    // Day -> Golden Hour -> Night happens primarily between p = 0.55 and p = 0.85
-    // 0.0 - 0.55: Pure Daytime
-    // 0.55 - 0.70: Golden Hour
-    // 0.70 - 0.85: Twilight / Night
-    // 0.85 - 1.00: Quiet Night / Monumental
-    let timeOfDay = 0; // 0 = day, 1 = golden, 2 = night
-    if (p > 0.55 && p <= 0.70) {
-      timeOfDay = (p - 0.55) / 0.15; // 0 -> 1
-    } else if (p > 0.70 && p <= 0.85) {
-      timeOfDay = 1 + (p - 0.70) / 0.15; // 1 -> 2
-    } else if (p > 0.85) {
-      timeOfDay = 2;
-    }
+  React.useEffect(() => {
+    const el = document.getElementById('light-journey');
+    if (!el) return;
+
+    // We animate a dummy object and read its value
+    const proxy = { val: 0 };
+    const st = gsap.fromTo(
+      proxy,
+      { val: 0 },
+      {
+        val: 2,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+          onUpdate: () => {
+            timeOfDayRef.current = proxy.val;
+          }
+        }
+      }
+    );
+
+    return () => {
+      st.scrollTrigger?.kill();
+    };
+  }, []);
+
+  useFrame(() => {
+    const timeOfDay = timeOfDayRef.current;
 
     if (sunLightRef.current && ambientRef.current && interiorLightRef.current) {
       if (timeOfDay <= 1) {

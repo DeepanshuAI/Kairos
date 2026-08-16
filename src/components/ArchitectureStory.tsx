@@ -7,9 +7,6 @@ export const ArchitectureStory: React.FC = () => {
   const ch1Ref = useRef<HTMLDivElement>(null);
   const ch2Ref = useRef<HTMLDivElement>(null);
   const ch3Ref = useRef<HTMLDivElement>(null);
-  
-  const ann1Ref = useRef<HTMLDivElement>(null);
-  const ann2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mm = initArchitectureScrollStory({
@@ -17,8 +14,6 @@ export const ArchitectureStory: React.FC = () => {
       chapter1Text: ch1Ref.current,
       chapter2Text: ch2Ref.current,
       chapter3Text: ch3Ref.current,
-      annotation1: ann1Ref.current,
-      annotation2: ann2Ref.current,
     });
 
     return () => {
@@ -96,30 +91,6 @@ export const ArchitectureStory: React.FC = () => {
           </div>
         </div>
 
-        {/* Layer 3: Floating Architectural Annotations */}
-        <div 
-          ref={ann1Ref}
-          className="hidden lg:flex absolute right-[15%] top-[30%] z-10 items-center opacity-0 -translate-x-8"
-        >
-          <div className="w-16 xl:w-32 h-px bg-bronze/60 origin-right mr-6" data-line />
-          <div className="max-w-xs p-6 border-l border-bronze/50 bg-charcoal/80 backdrop-blur-sm space-y-2 text-xs">
-            <div className="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">FACADE SPECIFICATION</div>
-            <div className="text-ivory font-serif text-lg">Off-Form Concrete & Low-E Triple Glazing</div>
-            <div className="text-stone/70 text-[11px]">Acoustic isolation rating 48dB for absolute silence.</div>
-          </div>
-        </div>
-
-        <div 
-          ref={ann2Ref}
-          className="hidden lg:flex absolute right-[15%] bottom-[25%] z-10 items-center opacity-0 -translate-x-8"
-        >
-          <div className="w-16 xl:w-32 h-px bg-bronze/60 origin-right mr-6" data-line />
-          <div className="max-w-xs p-6 border-l border-bronze/50 bg-charcoal/80 backdrop-blur-sm space-y-2 text-xs">
-            <div className="text-[10px] uppercase tracking-[0.25em] text-bronze font-semibold">GROUND FOOTPRINT</div>
-            <div className="text-ivory font-serif text-lg">4.5 Private Acres • Rewari</div>
-            <div className="text-stone/70 text-[11px]">85% dedicated green canopy and private water courtyards.</div>
-          </div>
-        </div>
 
         {/* Layer 4: Bottom Bar Progress Indicator */}
         <div className="relative z-10 max-w-[1800px] w-full mx-auto px-6 md:px-12 lg:px-16 pb-6 sm:pb-8 flex items-center justify-between border-t border-stone/15 pt-3 sm:pt-4 text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-stone">
