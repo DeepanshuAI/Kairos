@@ -1,11 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import { initInteriorCinematicExpansion } from '../animations/materialScroll';
+import { usePointerParallax } from '../hooks/usePointerParallax';
 
 export const InteriorExperience: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const maskRef = useRef<HTMLDivElement>(null);
+  const bgImageRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
+
+  // Apply subtle pointer parallax to the background image
+  usePointerParallax(bgImageRef, 8, 0.08);
 
   useEffect(() => {
     const ctx = initInteriorCinematicExpansion(
@@ -61,14 +66,18 @@ export const InteriorExperience: React.FC = () => {
         </div>
 
         {/* Scroll-Driven Expanding Interior Canvas */}
-        <div className="relative w-full aspect-[21/9] min-h-[420px] md:min-h-[600px] overflow-hidden border border-stone/15">
+        <div className="relative w-full aspect-[21/9] min-h-[420px] md:min-h-[600px] overflow-hidden border border-stone/15 group">
           <div 
             ref={maskRef}
-            className="w-full h-full bg-cover bg-center transition-all duration-300"
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2560&auto=format&fit=crop')`,
-            }}
+            className="relative w-full h-full overflow-hidden"
           >
+            <div 
+              ref={bgImageRef}
+              className="absolute -inset-4 bg-cover bg-center transition-all duration-700 group-hover:scale-105"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2560&auto=format&fit=crop')`,
+              }}
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-charcoal/30" />
             
             <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 max-w-lg space-y-2">

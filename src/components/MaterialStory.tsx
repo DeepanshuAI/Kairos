@@ -1,5 +1,22 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from '../animations/utils';
+import { usePointerParallax } from '../hooks/usePointerParallax';
+
+const ParallaxImage: React.FC<{ src: string; alt: string; className: string }> = ({ src, alt, className }) => {
+  const imgRef = useRef<HTMLImageElement>(null);
+  // Apply pointer parallax
+  usePointerParallax(imgRef, 15, 0.08);
+
+  return (
+    <img
+      ref={imgRef}
+      src={src}
+      alt={alt}
+      className={className}
+      loading="lazy"
+    />
+  );
+};
 
 export const MaterialStory: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,7 +30,7 @@ export const MaterialStory: React.FC = () => {
       const img = section.querySelector('.material-img');
       const textBlock = section.querySelector('.material-text');
       
-      // Image Parallax
+      // Image Parallax (Scroll)
       if (img) {
         gsap.fromTo(
           img,
@@ -86,11 +103,10 @@ export const MaterialStory: React.FC = () => {
 
           <div className="lg:col-span-7">
             <div className="relative aspect-[16/10] bg-charcoal overflow-hidden border border-stone/20">
-              <img
+              <ParallaxImage
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop"
                 alt="Honed Travertine Marble Detail"
                 className="material-img w-full h-[120%] object-cover object-top"
-                loading="lazy"
               />
             </div>
           </div>
@@ -102,11 +118,10 @@ export const MaterialStory: React.FC = () => {
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 order-2 lg:order-1">
             <div className="relative aspect-[16/10] bg-charcoal overflow-hidden border border-stone/20">
-              <img
+              <ParallaxImage
                 src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2000&auto=format&fit=crop"
                 alt="Smoked European Oak Wall Paneling"
                 className="material-img w-full h-[120%] object-cover object-center"
-                loading="lazy"
               />
             </div>
           </div>
@@ -141,11 +156,10 @@ export const MaterialStory: React.FC = () => {
           </div>
 
           <div className="relative w-full aspect-[21/9] min-h-[380px] bg-charcoal overflow-hidden border border-stone/20">
-            <img
+            <ParallaxImage
               src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2560&auto=format&fit=crop"
               alt="Natural Light & Shadow Play"
               className="material-img w-full h-[120%] object-cover object-center"
-              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 text-xs text-stone/80 uppercase tracking-[0.25em]">
@@ -163,11 +177,10 @@ export const MaterialStory: React.FC = () => {
           <div className="material-text lg:col-span-6 space-y-6">
             <h3 className="font-serif text-4xl sm:text-5xl font-light">GLASS</h3>
             <div className="relative aspect-[4/3] bg-charcoal overflow-hidden border border-stone/20">
-              <img
+              <ParallaxImage
                 src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1600&auto=format&fit=crop"
                 alt="Motorized Acoustic Glass Wall"
                 className="material-img w-full h-[120%] object-cover object-center"
-                loading="lazy"
               />
             </div>
             <p className="text-xs md:text-sm font-light text-stone/70 leading-relaxed">
@@ -179,11 +192,10 @@ export const MaterialStory: React.FC = () => {
           <div className="material-text lg:col-span-6 space-y-6">
             <h3 className="font-serif text-4xl sm:text-5xl font-light">CRAFT</h3>
             <div className="relative aspect-[4/3] bg-charcoal overflow-hidden border border-stone/20">
-              <img
+              <ParallaxImage
                 src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop"
                 alt="Cast Bronze Hardware Detail"
                 className="material-img w-full h-[120%] object-cover object-center"
-                loading="lazy"
               />
             </div>
             <div className="space-y-2">

@@ -1,5 +1,22 @@
 import React, { useEffect, useRef } from 'react';
 import { initSignatureLifestyleReveal } from '../animations/lifestyleScroll';
+import { usePointerParallax } from '../hooks/usePointerParallax';
+
+const ParallaxImage: React.FC<{ src: string; alt: string; className: string; style?: React.CSSProperties }> = ({ src, alt, className, style }) => {
+  const imgRef = useRef<HTMLImageElement>(null);
+  usePointerParallax(imgRef, 12, 0.08);
+
+  return (
+    <img
+      ref={imgRef}
+      src={src}
+      alt={alt}
+      className={className}
+      style={style}
+      loading="lazy"
+    />
+  );
+};
 
 export const LifestyleExperience: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -45,11 +62,10 @@ export const LifestyleExperience: React.FC = () => {
           <div 
             className="lifestyle-hero-mask relative w-full aspect-[16/9] min-h-[400px] sm:min-h-[550px] bg-charcoal overflow-hidden border border-stone/20"
           >
-            <img
+            <ParallaxImage
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2560&auto=format&fit=crop"
               alt="Morning light over private loggia breakfast"
-              className="w-full h-full object-cover"
-              loading="lazy"
+              className="w-full h-full object-cover scale-[1.05]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/30 to-transparent" />
             
@@ -93,12 +109,11 @@ export const LifestyleExperience: React.FC = () => {
 
           <div className="lg:col-span-7">
             <div className="lifestyle-img-frame relative aspect-[16/10] bg-charcoal overflow-hidden border border-stone/20">
-              <img
+              <ParallaxImage
                 src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2000&auto=format&fit=crop"
                 alt="Quiet morning light in European oak bedroom"
-                className="lifestyle-img w-full h-full object-cover"
+                className="lifestyle-img w-full h-[120%] -top-[10%] relative object-cover"
                 style={{ filter: 'contrast(1.05) brightness(1.1) sepia(0.15) hue-rotate(-5deg)' }}
-                loading="lazy"
               />
             </div>
           </div>
@@ -110,11 +125,10 @@ export const LifestyleExperience: React.FC = () => {
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 order-2 lg:order-1">
             <div className="lifestyle-img-frame relative aspect-[16/10] bg-charcoal overflow-hidden border border-stone/20">
-              <img
+              <ParallaxImage
                 src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop"
                 alt="Active living & dining space with natural light"
-                className="lifestyle-img w-full h-full object-cover"
-                loading="lazy"
+                className="lifestyle-img w-full h-[120%] -top-[10%] relative object-cover"
               />
             </div>
           </div>
@@ -156,11 +170,10 @@ export const LifestyleExperience: React.FC = () => {
 
           <div className="lg:col-span-7">
             <div className="lifestyle-img-frame relative aspect-[16/10] bg-charcoal overflow-hidden border border-stone/20">
-              <img
+              <ParallaxImage
                 src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2000&auto=format&fit=crop"
                 alt="Family and friends gathering on private terrace"
-                className="lifestyle-img w-full h-full object-cover"
-                loading="lazy"
+                className="lifestyle-img w-full h-[120%] -top-[10%] relative object-cover"
               />
             </div>
           </div>
@@ -178,12 +191,11 @@ export const LifestyleExperience: React.FC = () => {
           </h2>
           
           <div className="lifestyle-stillness-img-frame relative max-w-3xl mx-auto aspect-[21/9] min-h-[300px] sm:min-h-[400px] bg-charcoal overflow-hidden border border-stone/15">
-            <img
+            <ParallaxImage
               src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2000&auto=format&fit=crop"
               alt="Quiet reflecting pool courtyard stillness"
-              className="lifestyle-stillness-img w-full h-full object-cover opacity-85"
+              className="lifestyle-stillness-img w-full h-full object-cover opacity-85 scale-[1.05]"
               style={{ filter: 'contrast(1.15) brightness(0.65) sepia(0.2) hue-rotate(-15deg)' }}
-              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0D0C0C] via-transparent to-[#0D0C0C]/50" />
           </div>
@@ -211,12 +223,11 @@ export const LifestyleExperience: React.FC = () => {
 
           {/* Immersive Twilight Photography */}
           <div className="lifestyle-evening-img-frame relative w-full aspect-[21/9] min-h-[420px] bg-charcoal overflow-hidden border border-stone/20">
-            <img
+            <ParallaxImage
               src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2560&auto=format&fit=crop"
               alt="Warm evening ambient lighting over Rewari skyline"
-              className="lifestyle-evening-img w-full h-full object-cover"
+              className="lifestyle-evening-img w-full h-full object-cover scale-[1.05]"
               style={{ filter: 'contrast(1.2) brightness(0.6) sepia(0.35) hue-rotate(-20deg)' }}
-              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-transparent to-transparent" />
             <div className="absolute bottom-8 left-8 md:bottom-10 md:left-10 text-xs text-stone/80 uppercase tracking-[0.25em]">
