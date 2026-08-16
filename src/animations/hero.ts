@@ -39,58 +39,57 @@ export const animateHeroScroll = (refs: HeroAnimationRefs) => {
       trigger: container,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 0.6,
+      scrub: 0.5,
     }
   });
 
-  // Beat 1 (0.0 - 2.4)
+  // Beat 1: Exits smoothly as scroll begins (1.0 -> 2.0)
   if (beat1) {
-    scrollTl.to(beat1, { opacity: 0, y: -24, ease: 'power1.inOut', duration: 1.0 }, 1.4);
+    scrollTl.to(beat1, { opacity: 0, y: -20, ease: 'power1.inOut', duration: 1.0 }, 1.0);
   }
   if (scrollIndicator) {
-    scrollTl.to(scrollIndicator, { opacity: 0, ease: 'power1.inOut', duration: 0.6 }, 0.8);
+    scrollTl.to(scrollIndicator, { opacity: 0, ease: 'power1.inOut', duration: 0.5 }, 0.5);
   }
 
-  // Beat 2: Architecture & Materials (2.0 - 5.0)
+  // Beat 2: Enters immediately as Beat 1 fades (1.6 -> 4.8)
   if (beat2) {
     scrollTl.fromTo(
       beat2,
-      { opacity: 0, y: 24, pointerEvents: 'none' },
+      { opacity: 0, y: 20, pointerEvents: 'none' },
       { opacity: 1, y: 0, pointerEvents: 'auto', ease: 'power1.out', duration: 0.8 },
-      2.0
+      1.6
     );
     scrollTl.to(
       beat2,
-      { opacity: 0, y: -24, pointerEvents: 'none', ease: 'power1.in', duration: 0.8 },
-      4.2
+      { opacity: 0, y: -20, pointerEvents: 'none', ease: 'power1.in', duration: 0.8 },
+      4.0
     );
   }
 
-  // Beat 3: Light & Residences (4.5 - 7.5)
+  // Beat 3: Enters immediately as Beat 2 fades (4.2 -> 7.4)
   if (beat3) {
     scrollTl.fromTo(
       beat3,
-      { opacity: 0, y: 24, pointerEvents: 'none' },
+      { opacity: 0, y: 20, pointerEvents: 'none' },
       { opacity: 1, y: 0, pointerEvents: 'auto', ease: 'power1.out', duration: 0.8 },
-      4.6
+      4.2
     );
     scrollTl.to(
       beat3,
-      { opacity: 0, y: -24, pointerEvents: 'none', ease: 'power1.in', duration: 0.8 },
-      6.8
+      { opacity: 0, y: -20, pointerEvents: 'none', ease: 'power1.in', duration: 0.8 },
+      6.6
     );
   }
 
-  // Beat 4: Final Reveal Resolution & CTA (7.0 - 10.0)
+  // Beat 4: Enters as Beat 3 fades and stays locked for resolution (6.8 -> 10.0)
   if (beat4) {
     scrollTl.fromTo(
       beat4,
-      { opacity: 0, y: 24, pointerEvents: 'none' },
-      { opacity: 1, y: 0, pointerEvents: 'auto', ease: 'power1.out', duration: 0.9 },
-      7.2
+      { opacity: 0, y: 20, pointerEvents: 'none' },
+      { opacity: 1, y: 0, pointerEvents: 'auto', ease: 'power1.out', duration: 0.8 },
+      6.8
     );
-    // Hold actively to end of scroll
-    scrollTl.to({}, { duration: 1.9 }, 8.1);
+    scrollTl.to({}, { duration: 2.4 }, 7.6);
   }
 
   return { entrance: entranceTl, scroll: scrollTl, revert: () => { entranceTl.kill(); scrollTl.kill(); } };

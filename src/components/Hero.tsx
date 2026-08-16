@@ -28,12 +28,12 @@ export const Hero: React.FC = () => {
     <section 
       id="hero"
       ref={containerRef}
-      className="relative w-full h-[320vh] bg-transparent text-ivory group"
+      className="relative w-full h-[200vh] bg-transparent text-ivory group"
     >
       {/* Sticky Content Wrapper */}
-      <div className="sticky top-0 w-full h-screen min-h-[680px] flex flex-col justify-between overflow-hidden">
+      <div className="sticky top-0 w-full h-screen min-h-[640px] flex flex-col justify-between overflow-hidden">
         {/* Top Spacer for Navigation */}
-        <div className="relative z-10 h-20 md:h-28" />
+        <div className="relative z-10 h-16 md:h-20" />
 
         {/* Main Hero Content Composition */}
         <div className="relative z-10 max-w-[1800px] w-full mx-auto px-6 md:px-12 lg:px-16 flex flex-col justify-center flex-grow">
