@@ -41,11 +41,14 @@ export const useGlobalScrollCamera = () => {
     // 1. HERO CONTINUOUS CINEMATIC 360-DEGREE ORBIT
     // Radius = 48 (Building half-width is 28.2, corner distance is 40.1, so radius 48 is completely collision-free)
     const heroEl = document.getElementById('hero');
-    if (heroEl) {
+    const atmosphereEl = document.getElementById('light-journey');
+    
+    if (heroEl && atmosphereEl) {
       const heroTl = gsap.timeline({
         scrollTrigger: {
           trigger: heroEl,
           start: 'top top',
+          endTrigger: atmosphereEl,
           end: 'bottom bottom',
           scrub: true,
         }
