@@ -34,7 +34,7 @@ export const GlobalCanvas: React.FC = () => {
         shadows={!isReducedMotion}
         dpr={typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : Math.min(window.devicePixelRatio, 1.5)}
         camera={{
-          position: [28, 15, 28],
+          position: [0, 14, 48],
           fov: 38,
           near: 0.1,
           far: 200,

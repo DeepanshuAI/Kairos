@@ -81,7 +81,7 @@ export const useGlobalScrollCamera = () => {
           trigger: heroEl,
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 0.8,
+          scrub: true,
         }
       });
 
@@ -100,11 +100,11 @@ export const useGlobalScrollCamera = () => {
         onUpdate();
       };
 
-      // Full 360° single orbit from top to bottom of hero section
+      // Exactly 1 full 360° rotation from 0° at top of hero to 360° at bottom of hero
       heroTl.fromTo(
         proxy,
         { heroAngle: 0 },
-        { heroAngle: 360, ease: 'sine.inOut', duration: 10.0, onUpdate: onHeroUpdate }
+        { heroAngle: 360, ease: 'none', duration: 1.0, onUpdate: onHeroUpdate }
       );
 
       triggers.push(heroTl);
