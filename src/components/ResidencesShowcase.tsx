@@ -96,7 +96,7 @@ export const ResidencesShowcase: React.FC = () => {
     <section 
       id="residences"
       ref={sectionRef}
-      className="relative w-full h-[300vh] bg-transparent text-ivory border-b border-stone/10"
+      className="relative w-full h-[150vh] bg-transparent text-ivory border-b border-stone/10"
     >
       <div className="sticky top-0 w-full h-screen flex flex-col justify-center overflow-hidden">
         <div className="max-w-[1800px] w-full mx-auto px-6 md:px-12 lg:px-16 space-y-16">

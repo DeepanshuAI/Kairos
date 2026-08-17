@@ -57,7 +57,7 @@ export const App: React.FC = () => {
         <ResidencesShowcase />
 
         {/* 04 - HORIZON / 360 (3D Cinematic Orbit) */}
-        <section id="horizon" className="relative w-full h-[200vh] pointer-events-none">
+        <section id="horizon" className="relative w-full h-[100vh] pointer-events-none">
           <div className="sticky top-1/2 -translate-y-1/2 w-full text-center mix-blend-difference text-ivory z-10 px-6">
             <span className="text-[10px] uppercase tracking-[0.4em] text-bronze font-medium block mb-4">04 • HORIZON</span>
             <h2 className="font-serif text-4xl sm:text-6xl font-light">360° Uninterrupted View.</h2>
@@ -65,7 +65,7 @@ export const App: React.FC = () => {
         </section>
 
         {/* 05 - LIGHT JOURNEY (3D Day to Night) */}
-        <section id="light-journey" className="relative w-full h-[200vh] pointer-events-none">
+        <section id="light-journey" className="relative w-full h-[100vh] pointer-events-none">
           <div className="sticky top-1/2 -translate-y-1/2 w-full text-center mix-blend-difference text-ivory z-10 px-6">
             <span className="text-[10px] uppercase tracking-[0.4em] text-bronze font-medium block mb-4">05 • ATMOSPHERE</span>
             <h2 className="font-serif text-4xl sm:text-6xl font-light">Designed around the movement of light.</h2>

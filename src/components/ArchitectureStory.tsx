@@ -27,7 +27,7 @@ export const ArchitectureStory: React.FC = () => {
     <section 
       id="architecture"
       ref={containerRef}
-      className="relative w-full bg-transparent text-ivory h-[250vh]"
+      className="relative w-full bg-transparent text-ivory h-[140vh]"
     >
       {/* Sticky Full-Viewport Stage */}
       <div className="sticky top-0 w-full h-screen flex flex-col justify-between overflow-hidden">

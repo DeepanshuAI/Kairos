@@ -53,10 +53,9 @@ export const Statement: React.FC = () => {
     <section 
       id="statement"
       ref={sectionRef}
-      className="relative w-full h-[150vh] bg-transparent text-ivory border-b border-stone/15 overflow-hidden"
+      className="relative w-full h-[100vh] bg-transparent text-ivory border-b border-stone/15 overflow-hidden flex flex-col justify-center"
     >
-      <div className="sticky top-0 w-full h-screen flex flex-col justify-center">
-        <div className="max-w-[1400px] w-full mx-auto px-6 md:px-12 lg:px-16 text-center space-y-12">
+      <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 text-center space-y-12">
           <p 
             ref={tagRef}
           className="text-[10px] md:text-xs uppercase tracking-[0.35em] font-medium text-bronze"
@@ -83,7 +82,6 @@ export const Statement: React.FC = () => {
         >
           Rewari • Haryana
         </p>
-      </div>
       </div>
     </section>
   );

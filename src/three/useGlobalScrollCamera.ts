@@ -100,23 +100,19 @@ export const useGlobalScrollCamera = () => {
         onUpdate();
       };
 
-      // 4 Synchronized Beats spanning total timeline of 10.0 duration
-      // Beat 1: 0 - 2.5 (0° -> 75°)
-      heroTl.fromTo(proxy, { heroAngle: 0 }, { heroAngle: 75, ease: 'power1.inOut', duration: 2.5, onUpdate: onHeroUpdate }, 0);
-      // Beat 2: 2.5 - 5.0 (75° -> 160°)
-      heroTl.to(proxy, { heroAngle: 160, ease: 'power1.inOut', duration: 2.5, onUpdate: onHeroUpdate }, 2.5);
-      // Beat 3: 5.0 - 7.5 (160° -> 250°)
-      heroTl.to(proxy, { heroAngle: 250, ease: 'power1.inOut', duration: 2.5, onUpdate: onHeroUpdate }, 5.0);
-      // Beat 4: 7.5 - 10.0 (250° -> 340° / Final stable composition)
-      heroTl.to(proxy, { heroAngle: 340, ease: 'power1.out', duration: 2.5, onUpdate: onHeroUpdate }, 7.5);
+      // Full 360° single orbit from top to bottom of hero section
+      heroTl.fromTo(
+        proxy,
+        { heroAngle: 0 },
+        { heroAngle: 360, ease: 'sine.inOut', duration: 10.0, onUpdate: onHeroUpdate }
+      );
 
       triggers.push(heroTl);
     }
 
     // Waypoints for subsequent sections (all maintained at safe radius >= 46)
-    // End of hero is at 340 degrees:
-    const radEnd = 340 * (Math.PI / 180);
-    const heroEndPos    = [Math.sin(radEnd) * 48, 14, Math.cos(radEnd) * 48];
+    // End of hero is at 360 degrees:
+    const heroEndPos    = [0, 14, 48];
     const wp1_statement = [12, 13, 46];
     const wp2_arch      = [24, 11, 42];
     const wp3_res       = [36, 12, 34];

@@ -39,57 +39,57 @@ export const animateHeroScroll = (refs: HeroAnimationRefs) => {
       trigger: container,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 0.5,
+      scrub: 0.4,
     }
   });
 
-  // Beat 1: Exits smoothly as scroll begins (1.0 -> 2.0)
+  // Beat 1: Exits smoothly as scroll begins (0.8 -> 1.8)
   if (beat1) {
-    scrollTl.to(beat1, { opacity: 0, y: -20, ease: 'power1.inOut', duration: 1.0 }, 1.0);
+    scrollTl.to(beat1, { opacity: 0, y: -20, ease: 'power1.inOut', duration: 1.0 }, 0.8);
   }
   if (scrollIndicator) {
-    scrollTl.to(scrollIndicator, { opacity: 0, ease: 'power1.inOut', duration: 0.5 }, 0.5);
+    scrollTl.to(scrollIndicator, { opacity: 0, ease: 'power1.inOut', duration: 0.5 }, 0.4);
   }
 
-  // Beat 2: Enters immediately as Beat 1 fades (1.6 -> 4.8)
+  // Beat 2: Enters as Beat 1 exits (1.2 -> 4.6)
   if (beat2) {
     scrollTl.fromTo(
       beat2,
       { opacity: 0, y: 20, pointerEvents: 'none' },
-      { opacity: 1, y: 0, pointerEvents: 'auto', ease: 'power1.out', duration: 0.8 },
-      1.6
+      { opacity: 1, y: 0, pointerEvents: 'auto', ease: 'power1.out', duration: 0.6 },
+      1.2
     );
     scrollTl.to(
       beat2,
-      { opacity: 0, y: -20, pointerEvents: 'none', ease: 'power1.in', duration: 0.8 },
+      { opacity: 0, y: -20, pointerEvents: 'none', ease: 'power1.in', duration: 0.6 },
       4.0
     );
   }
 
-  // Beat 3: Enters immediately as Beat 2 fades (4.2 -> 7.4)
+  // Beat 3: Enters as Beat 2 exits (3.8 -> 7.2)
   if (beat3) {
     scrollTl.fromTo(
       beat3,
       { opacity: 0, y: 20, pointerEvents: 'none' },
-      { opacity: 1, y: 0, pointerEvents: 'auto', ease: 'power1.out', duration: 0.8 },
-      4.2
+      { opacity: 1, y: 0, pointerEvents: 'auto', ease: 'power1.out', duration: 0.6 },
+      3.8
     );
     scrollTl.to(
       beat3,
-      { opacity: 0, y: -20, pointerEvents: 'none', ease: 'power1.in', duration: 0.8 },
+      { opacity: 0, y: -20, pointerEvents: 'none', ease: 'power1.in', duration: 0.6 },
       6.6
     );
   }
 
-  // Beat 4: Enters as Beat 3 fades and stays locked for resolution (6.8 -> 10.0)
+  // Beat 4: Enters as Beat 3 exits and holds firmly (6.4 -> 10.0)
   if (beat4) {
     scrollTl.fromTo(
       beat4,
       { opacity: 0, y: 20, pointerEvents: 'none' },
-      { opacity: 1, y: 0, pointerEvents: 'auto', ease: 'power1.out', duration: 0.8 },
-      6.8
+      { opacity: 1, y: 0, pointerEvents: 'auto', ease: 'power1.out', duration: 0.6 },
+      6.4
     );
-    scrollTl.to({}, { duration: 2.4 }, 7.6);
+    scrollTl.to({}, { duration: 3.0 }, 7.0);
   }
 
   return { entrance: entranceTl, scroll: scrollTl, revert: () => { entranceTl.kill(); scrollTl.kill(); } };
