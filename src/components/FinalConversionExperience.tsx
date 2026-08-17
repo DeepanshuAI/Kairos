@@ -12,6 +12,24 @@ export const FinalConversionExperience: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
 
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleFooterNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    setIsTransitioning(true);
+
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: 'auto' });
+      
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 150);
+    }, 700);
+  };
+
   useEffect(() => {
     if (heroRef.current) {
       gsap.fromTo(
@@ -63,7 +81,13 @@ export const FinalConversionExperience: React.FC = () => {
   };
 
   return (
-    <div id="contact" className="text-ivory overflow-hidden relative">
+    <>
+      <div 
+        className={`fixed inset-0 bg-[#121110] z-[100] transition-opacity duration-700 pointer-events-none ${
+          isTransitioning ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+      <div id="contact" className="text-ivory overflow-hidden relative">
       
       {/* 1. TRANSITION FROM PHASE 6 */}
       <div className="py-24 md:py-36 border-b border-stone/10 bg-transparent relative z-0 pointer-events-none">
@@ -319,7 +343,7 @@ export const FinalConversionExperience: React.FC = () => {
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 flex flex-col md:flex-row justify-between items-center gap-10">
           
           <div className="space-y-1 text-center md:text-left">
-            <div className="font-serif text-xl text-ivory tracking-widest">KAIROS</div>
+            <a href="#" onClick={(e) => handleFooterNavClick(e, '#hero')} className="font-serif text-xl text-ivory tracking-widest block hover:text-bronze transition-colors">KAIROS</a>
             <div className="text-[9px] uppercase tracking-[0.25em] text-stone/40">
               Rewari, Haryana • India
             </div>
@@ -330,6 +354,7 @@ export const FinalConversionExperience: React.FC = () => {
               <a 
                 key={link} 
                 href={`#${link.toLowerCase()}`} 
+                onClick={(e) => handleFooterNavClick(e, `#${link.toLowerCase()}`)}
                 className="hover:text-ivory transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-px after:bg-ivory after:origin-right after:scale-x-0 hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
               >
                 {link}
@@ -350,5 +375,6 @@ export const FinalConversionExperience: React.FC = () => {
       </footer>
 
     </div>
+    </>
   );
 };

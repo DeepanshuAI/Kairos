@@ -9,6 +9,8 @@ export const Navigation: React.FC = () => {
   const linkRefs = useRef<(HTMLElement | null)[]>([]);
   const progressBarRef = useRef<HTMLDivElement>(null);
 
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
@@ -55,8 +57,37 @@ export const Navigation: React.FC = () => {
     { name: 'Enquire', href: '#contact' },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+
+    setIsTransitioning(true);
+
+    setTimeout(() => {
+      // Jump to section instantly
+      target.scrollIntoView({ behavior: 'auto' });
+      
+      // Allow layout/scrollTriggers a moment to catch up before fading in
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 150);
+    }, 700);
+  };
+
   return (
     <>
+      {/* Global Transition Overlay */}
+      <div 
+        className={`fixed inset-0 bg-[#121110] z-[100] transition-opacity duration-700 pointer-events-none ${
+          isTransitioning ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+      
       {/* Reading Progress Bar */}
       <div 
         ref={progressBarRef} 
@@ -73,6 +104,7 @@ export const Navigation: React.FC = () => {
         {/* Brand Mark */}
         <a 
           href="#" 
+          onClick={(e) => handleNavClick(e, '#hero')}
           className="group flex items-center gap-3 tracking-[0.25em] text-xs font-medium uppercase text-ivory hover:text-bronze transition-colors duration-300"
           data-cursor="TOP"
         >
@@ -91,6 +123,7 @@ export const Navigation: React.FC = () => {
             <a 
               key={link.name}
               href={link.href} 
+              onClick={(e) => handleNavClick(e, link.href)}
               className="relative py-1 text-stone hover:text-ivory transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-ivory after:origin-right after:scale-x-0 hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
             >
               {link.name}
@@ -102,6 +135,7 @@ export const Navigation: React.FC = () => {
         <div className="hidden lg:flex items-center">
           <a
             href="#contact"
+            onClick={(e) => handleNavClick(e, '#contact')}
             className="group relative inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] font-medium text-ivory transition-all duration-300"
             data-cursor="ENTER"
           >
@@ -130,7 +164,7 @@ export const Navigation: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, link.href)}
               ref={(el) => { linkRefs.current[index] = el; }}
               className="text-sm uppercase tracking-[0.35em] text-ivory hover:text-bronze transition-colors"
             >
@@ -143,7 +177,7 @@ export const Navigation: React.FC = () => {
           >
             <a
               href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, '#contact')}
               className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.25em] font-medium text-bronze transition-all duration-300"
             >
               <span>Book Viewing</span>
