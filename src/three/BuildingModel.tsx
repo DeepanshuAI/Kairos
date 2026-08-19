@@ -16,7 +16,7 @@ export const BuildingModel: React.FC = () => {
         mesh.castShadow = true;
         mesh.receiveShadow = true;
 
-        // Enhance materials for luxury architectural rendering
+        // Enhance materials for luxury resort architectural rendering
         if (mesh.material) {
           const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
           mats.forEach((mat) => {
@@ -47,7 +47,7 @@ export const BuildingModel: React.FC = () => {
 
   return (
     <group position={[0, -0.5, 0]}>
-      {/* Centered Architecture Model */}
+      {/* Centered Resort Architecture Model */}
       <Center top>
         <primitive object={clonedScene} scale={1.0} />
       </Center>
@@ -62,15 +62,15 @@ export const BuildingModel: React.FC = () => {
         <shadowMaterial opacity={0.35} />
       </mesh>
 
-      {/* 3D Annotations for Material / Architectural points */}
+      {/* 3D Annotations for Resort Pavilion Points */}
       <Html position={[-16, 5.5, 20]} distanceFactor={45} className="pointer-events-none transition-opacity duration-1000 annotation-marker opacity-0">
         <div className="flex flex-col items-center gap-2 -translate-x-1/2 -translate-y-1/2">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 bg-bronze rounded-full animate-ping absolute opacity-50" />
             <div className="w-1.5 h-1.5 bg-bronze rounded-full shadow-[0_0_8px_rgba(202,168,124,0.6)]" />
           </div>
-          <div className="text-[10px] uppercase tracking-[0.2em] text-ivory font-medium bg-[#0f0f0f]/90 border border-stone/20 px-3 py-1.5 backdrop-blur-md whitespace-nowrap shadow-2xl">
-            ACOUSTIC GLASS
+          <div className="text-[9px] uppercase tracking-[0.2em] text-ivory font-medium bg-[#0f0f0f]/90 border border-stone/20 px-3 py-1.5 backdrop-blur-md whitespace-nowrap shadow-2xl">
+            SIGNATURE PAVILION
           </div>
         </div>
       </Html>
@@ -81,8 +81,8 @@ export const BuildingModel: React.FC = () => {
             <div className="w-1.5 h-1.5 bg-bronze rounded-full animate-ping absolute opacity-50" />
             <div className="w-1.5 h-1.5 bg-bronze rounded-full shadow-[0_0_8px_rgba(202,168,124,0.6)]" />
           </div>
-          <div className="text-[10px] uppercase tracking-[0.2em] text-ivory font-medium bg-[#0f0f0f]/90 border border-stone/20 px-3 py-1.5 backdrop-blur-md whitespace-nowrap shadow-2xl">
-            TRAVERTINE STONE
+          <div className="text-[9px] uppercase tracking-[0.2em] text-ivory font-medium bg-[#0f0f0f]/90 border border-stone/20 px-3 py-1.5 backdrop-blur-md whitespace-nowrap shadow-2xl">
+            TRAVERTINE WATER COURTYARD
           </div>
         </div>
       </Html>
@@ -93,8 +93,8 @@ export const BuildingModel: React.FC = () => {
             <div className="w-1.5 h-1.5 bg-bronze rounded-full animate-ping absolute opacity-50" />
             <div className="w-1.5 h-1.5 bg-bronze rounded-full shadow-[0_0_8px_rgba(202,168,124,0.6)]" />
           </div>
-          <div className="text-[10px] uppercase tracking-[0.2em] text-ivory font-medium bg-[#0f0f0f]/90 border border-stone/20 px-3 py-1.5 backdrop-blur-md whitespace-nowrap shadow-2xl">
-            NATURAL LIGHT
+          <div className="text-[9px] uppercase tracking-[0.2em] text-ivory font-medium bg-[#0f0f0f]/90 border border-stone/20 px-3 py-1.5 backdrop-blur-md whitespace-nowrap shadow-2xl">
+            HORIZON SKY OBSERVATORY
           </div>
         </div>
       </Html>
