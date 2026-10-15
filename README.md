@@ -1,32 +1,51 @@
-# React + TypeScript + Vite
+# Kairos Resort Website Concept
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Kairos is an interactive resort website concept built with React, TypeScript, and Vite. It combines a scroll driven 3D presentation with room, location, resort information, and client-side booking interface flows.
 
-Currently, two official plugins are available:
+## What is implemented
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- A 3D resort presentation using Three.js and React Three Fiber.
+- Resort, room, amenities, dining, and location views populated from local seed data.
+- Room selection, date and capacity checks, and price calculations in the client.
+- Booking, contact, newsletter, and admin interface flows backed by a browser-local data store.
+- Scroll animations and responsive page sections.
 
-## React Compiler
+## Demo data and scope
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This repository is a frontend concept. Resort identity, address, pricing, reviews, booking records, and contact details in `src/database/seedData.ts` are example content. The app stores edits in browser `localStorage` (with an in-memory fallback); it does not connect to a booking backend, payment provider, or real resort service. Do not use its displayed prices or reservation state for real bookings.
 
-## Expanding the Oxlint configuration
+The project does not include a checked-in screenshot set or automated test script.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Stack and structure
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+- React 19 and TypeScript
+- Vite 8 and Tailwind CSS 4
+- Three.js, React Three Fiber, and Drei for 3D scenes
+- GSAP for animation sequences
+- `src/components/`: page sections, navigation, modals, and 3D experience components
+- `src/database/`: TypeScript types and browser-local seed data/store
+- `src/services/`: client-side booking, room, contact, and experience operations
+
+## Run locally
+
+Prerequisites: Node.js compatible with the Vite version in `package.json`, and npm.
+
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Vite prints the local development URL in the terminal. No environment variables or backend service are configured in this repository.
+
+## Build and lint
+
+```bash
+npm run build
+npm run lint
+```
+
+There is no test script in `package.json`.
+
+## Maintainer
+
+Deepanshu Yadav · [GitHub](https://github.com/DeepanshuAI) · [Portfolio](https://portfo1io-ashen.vercel.app/)
